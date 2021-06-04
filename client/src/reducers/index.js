@@ -2,6 +2,7 @@ import { GET_POKEMONS, GET_POKEMON_DETAIL } from '../actions'
 
 const initialState = {
     pokemonsLoaded: [],
+    pokemonsLoadedByURL: [],
     pokemonDetail: {}
 }
 

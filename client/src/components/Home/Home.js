@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 export function Home(props) {
     const [name, setName] = useState("");
+    const [filteredPokemons, setFilteredPokemons] = useState([]);
 
     function handleChange(e) {
         setName(e.target.value);
@@ -31,7 +32,10 @@ export function Home(props) {
             </form>
             <ul>
                 {
-                    console.log(props.pokemons)
+                    console.log(props.pokemons),
+                    props.pokemons && props.pokemons.map(pokemon => (
+
+                    ))
 
                 }
             </ul>
