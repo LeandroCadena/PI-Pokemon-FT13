@@ -1,11 +1,18 @@
 import './App.css';
+import React, { useEffect, useState } from 'react';
+import { Route } from 'react-router-dom'
+import Login from './components/Login/Login';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Henry Pokemon</h1>
-    </div>
+    <React.Fragment>
+      <Route exact path="/" component={Login} />
+    </React.Fragment>
   );
 }
+// <div className="App">
+//   <Route></Route>
+//   <h1>Henry Pokemon</h1>
+// </div>
 
 export default App;
