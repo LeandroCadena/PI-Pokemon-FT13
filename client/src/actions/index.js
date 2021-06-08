@@ -1,23 +1,29 @@
 export const GET_POKEMONS = 'GET_POKEMONS';
-export const GET_POKEMONS_BY_URL = 'GET_POKEMONS_BY_URL';
 export const GET_POKEMON_DETAIL = 'GET_POKEMON_DETAIL';
 
-export function getPokemons() {
+export function getPokemons(page) {
     return function (dispatch) {
-        return fetch(`https://pokeapi.co/api/v2/pokemon`)
+        return fetch(page)
             .then(response => response.json())
             .then(json => {
-                dispatch({ type: GET_POKEMONS, payload: json.results });
-            })
-    }
-}
-
-export function getPokemonsByURL(url) {
-    return function (dispatch) {
-        return fetch(`${url}`)
-            .then(response => response.json())
-            .then(json => {
-                dispatch({ type: GET_POKEMONS_BY_URL, payload: json });
+                const poke = [];
+                json.results.forEach(async (pokemon) => {
+                    const res = await fetch(pokemon.url)
+                    const data = await res.json()
+                    poke.push({
+                        index: data.id,
+                        name: data.name,
+                        img: data.sprites.front_default,
+                        types: data.types
+                    })
+                })
+                dispatch({
+                    type: GET_POKEMONS, payload: {
+                        pokemons: poke,
+                        next: json.next,
+                        previous: json.previous
+                    }
+                });
             })
     }
 }

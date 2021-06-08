@@ -2,7 +2,6 @@ import { GET_POKEMONS, GET_POKEMON_DETAIL } from '../actions'
 
 const initialState = {
     pokemonsLoaded: [],
-    pokemonsLoadedByURL: [],
     pokemonDetail: {}
 }
 
@@ -11,7 +10,7 @@ export default (state = initialState, action) => {
         case GET_POKEMONS:
             return {
                 ...state,
-                pokemonsLoaded: action.payload
+                pokemonsLoaded: action.payload.pokemons
             };
         case GET_POKEMON_DETAIL:
             return {

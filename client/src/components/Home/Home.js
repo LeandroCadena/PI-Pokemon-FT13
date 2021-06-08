@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 export function Home(props) {
     const [name, setName] = useState("");
+    const [page, setPage] = useState("https://pokeapi.co/api/v2/pokemon");
     const [filteredPokemons, setFilteredPokemons] = useState([]);
 
     function handleChange(e) {
@@ -13,9 +14,13 @@ export function Home(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(props);
-        props.getPokemons();
+        setFilteredPokemons(props.pokemonsLoaded)
+        console.log(filteredPokemons)   
     }
+
+    useEffect(() => {
+        props.getPokemons(page);
+    }, [])
 
     return (
         <div>
@@ -32,11 +37,9 @@ export function Home(props) {
             </form>
             <ul>
                 {
-                    console.log(props.pokemons),
-                    props.pokemons && props.pokemons.map(pokemon => (
-
+                    filteredPokemons && filteredPokemons.map(pokemon => (
+                        <div>{pokemon.name}</div>
                     ))
-
                 }
             </ul>
         </div>
@@ -45,13 +48,13 @@ export function Home(props) {
 
 function mapStatetoProps(state) {
     return {
-        pokemons: state.pokemonsLoaded
+        pokemonsLoaded: state.pokemonsLoaded
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getPokemons: name => dispatch(getPokemons(name))
+        getPokemons: page => dispatch(getPokemons(page))
     }
 }
 
