@@ -2,6 +2,7 @@ import './Home.css';
 import React, { useState, useEffect } from 'react';
 import { getPokemons } from '../../actions';
 import { connect } from "react-redux";
+import Pokemon from '../Pokemon/Pokemon';
 
 export function Home(props) {
     const [name, setName] = useState("");
@@ -14,13 +15,15 @@ export function Home(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setFilteredPokemons(props.pokemonsLoaded)
-        console.log(filteredPokemons)   
     }
 
     useEffect(() => {
-        props.getPokemons(page);
+        props.getPokemons(page)
     }, [])
+
+    useEffect(() => {
+        setFilteredPokemons(props.pokemonsLoaded)
+    }, [props.pokemonsLoaded])
 
     return (
         <div>
@@ -38,7 +41,12 @@ export function Home(props) {
             <ul>
                 {
                     filteredPokemons && filteredPokemons.map(pokemon => (
-                        <div>{pokemon.name}</div>
+                        <Pokemon
+                            id={pokemon.index}
+                            name={pokemon.name}
+                            image={pokemon.img}
+                            types={pokemon.types}
+                        />
                     ))
                 }
             </ul>

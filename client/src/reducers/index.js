@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
         case GET_POKEMONS:
             return {
                 ...state,
-                pokemonsLoaded: action.payload.pokemons
+                pokemonsLoaded: action.payload
             };
         case GET_POKEMON_DETAIL:
             return {
