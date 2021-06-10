@@ -4,7 +4,7 @@ import { getPokemons } from '../../actions';
 import { connect } from "react-redux";
 import Pokemon from '../Pokemon/Pokemon';
 
-export function Home(props) {
+export function Home({ getPokemons, pokemonDetail, pokemonsLoaded }) {
     const [name, setName] = useState("");
     const [page, setPage] = useState("https://pokeapi.co/api/v2/pokemon");
     const [filteredPokemons, setFilteredPokemons] = useState([]);
@@ -15,15 +15,44 @@ export function Home(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        if (name !== "") {
+            fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+                .then(response => response.json())
+                .then(data => {
+                    setFilteredPokemons([{
+                        index: data.id,
+                        name: data.name,
+                        img: data.sprites.front_default,
+                        types: data.types
+                    }])
+                })
+                .catch(error => {
+                    setFilteredPokemons([{
+                        index: 5,
+                        name: "Pokemon No encontrado",
+                        img: "https://cdn3.josefacchin.com/wp-content/uploads/2018/09/http-not-found-error-404.png",
+                        types: [3,5]
+                    }])
+                })
+        }
     }
 
     useEffect(() => {
-        props.getPokemons(page)
-    }, [])
+        if (name === "") {
+            getPokemons(page)
+        }
+    }, [name])
 
     useEffect(() => {
-        setFilteredPokemons(props.pokemonsLoaded)
-    }, [props.pokemonsLoaded])
+        if (name === "") {
+            getPokemons(page)
+        }
+        getPokemons(page)
+    }, [page])
+
+    useEffect(() => {
+        setFilteredPokemons(pokemonsLoaded)
+    }, [pokemonsLoaded])
 
     return (
         <div>
@@ -37,17 +66,23 @@ export function Home(props) {
                     />
                 </div>
                 <button type="submit">BUSCAR</button>
+                <button onClick={() => setPage(pokemonDetail.previous)}>Anterior</button>
+                <button onClick={() => setPage(pokemonDetail.next)}>Siguiente</button>
             </form>
             <ul>
                 {
-                    filteredPokemons && filteredPokemons.map(pokemon => (
+                    filteredPokemons && filteredPokemons.map((pokemon, index) => (
                         <Pokemon
+                            key={index}
                             id={pokemon.index}
                             name={pokemon.name}
                             image={pokemon.img}
                             types={pokemon.types}
                         />
                     ))
+                }
+                {
+                    !filteredPokemons && (<h3>NO</h3>)
                 }
             </ul>
         </div>
@@ -56,7 +91,8 @@ export function Home(props) {
 
 function mapStatetoProps(state) {
     return {
-        pokemonsLoaded: state.pokemonsLoaded
+        pokemonsLoaded: state.pokemonsLoaded,
+        pokemonDetail: state.pokemonDetail
     }
 }
 
