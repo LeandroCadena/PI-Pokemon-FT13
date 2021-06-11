@@ -26,7 +26,7 @@ export function Home({ getPokemons, searchPokemon, pokemonsLoaded, pokemonDetail
     }, [pokemonsLoaded])
 
     useEffect(() => {
-        if(sortedPokemons) setFilteredPokemons(sortedPokemons)
+        if (sortedPokemons) setFilteredPokemons(sortedPokemons)
         setSortedPokemons(false)
         setLoading(false)
     }, [sortedPokemons])
@@ -38,20 +38,26 @@ export function Home({ getPokemons, searchPokemon, pokemonsLoaded, pokemonDetail
         setLoading(false)
     }
 
-    const orderByName = () => {
+    const orderByName = (mode) => {
+        let number = []
+        if (mode === "descendent") number = [1, -1]
+        else number = [-1, 1]
         setLoading(true)
         setSortedPokemons(filteredPokemons.sort(function (a, b) {
-            if (a.name > b.name) return 1;
-            if (a.name < b.name) return -1;
+            if (a.name > b.name) return number[0];
+            if (a.name < b.name) return number[1];
             return 0
         }))
     }
 
-    const orderByForce = () => {
+    const orderByForce = (mode) => {
+        let number = []
+        if (mode === "descendent") number = [1, -1]
+        else number = [-1, 1]
         setLoading(true)
         setSortedPokemons(filteredPokemons.sort(function (a, b) {
-            if (a.stats[1].base_stat > b.stats[1].base_stat) return 1;
-            if (a.stats[1].base_stat < b.stats[1].base_stat) return -1;
+            if (a.stats[1].base_stat > b.stats[1].base_stat) return number[0];
+            if (a.stats[1].base_stat < b.stats[1].base_stat) return number[1];
             return 0
         }))
     }
@@ -93,8 +99,10 @@ export function Home({ getPokemons, searchPokemon, pokemonsLoaded, pokemonDetail
             </div>
             <div>
                 <h4>Ordenar Por</h4>
-                <button onClick={() => orderByForce()}>Fuerza</button>
-                <button onClick={() => orderByName()}>ABC</button>
+                <button onClick={() => orderByForce("descendent")}>Fuerza ⬆</button>
+                <button onClick={() => orderByForce("ascendent")}>Fuerza ⬇</button>
+                <button onClick={() => orderByName("descendent")}>ABC ⬆</button>
+                <button onClick={() => orderByName("ascendent")}>ABC ⬇</button>
             </div>
             {
                 loading ? (<div>Cargando pokemons...</div>) : (
