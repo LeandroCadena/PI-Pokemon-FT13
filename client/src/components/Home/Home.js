@@ -3,11 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { getPokemons } from '../../actions';
 import { connect } from "react-redux";
 import Pokemon from '../Pokemon/Pokemon';
+import Pokedex from '../Pokedex/Pokedex';
+import Pagination from '../Pagination/Pagination';
 
 export function Home({ getPokemons, pokemonDetail, pokemonsLoaded }) {
     const [name, setName] = useState("");
     const [page, setPage] = useState("https://pokeapi.co/api/v2/pokemon");
     const [filteredPokemons, setFilteredPokemons] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     function handleChange(e) {
         setName(e.target.value);
@@ -31,28 +34,18 @@ export function Home({ getPokemons, pokemonDetail, pokemonsLoaded }) {
                         index: 5,
                         name: "Pokemon No encontrado",
                         img: "https://cdn3.josefacchin.com/wp-content/uploads/2018/09/http-not-found-error-404.png",
-                        types: [3,5]
+                        types: [3, 5]
                     }])
                 })
         }
     }
 
     useEffect(() => {
-        if (name === "") {
-            getPokemons(page)
-        }
-    }, [name])
-
-    useEffect(() => {
-        if (name === "") {
-            getPokemons(page)
-        }
-        getPokemons(page)
+        (async () => {
+            await getPokemons(page)
+            setLoading(false)
+        })()
     }, [page])
-
-    useEffect(() => {
-        setFilteredPokemons(pokemonsLoaded)
-    }, [pokemonsLoaded])
 
     return (
         <div>
@@ -69,22 +62,7 @@ export function Home({ getPokemons, pokemonDetail, pokemonsLoaded }) {
                 <button onClick={() => setPage(pokemonDetail.previous)}>Anterior</button>
                 <button onClick={() => setPage(pokemonDetail.next)}>Siguiente</button>
             </form>
-            <ul>
-                {
-                    filteredPokemons && filteredPokemons.map((pokemon, index) => (
-                        <Pokemon
-                            key={index}
-                            id={pokemon.index}
-                            name={pokemon.name}
-                            image={pokemon.img}
-                            types={pokemon.types}
-                        />
-                    ))
-                }
-                {
-                    !filteredPokemons && (<h3>NO</h3>)
-                }
-            </ul>
+            <Pagination />
         </div>
     )
 }

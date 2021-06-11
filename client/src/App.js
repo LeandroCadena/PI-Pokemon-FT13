@@ -12,9 +12,5 @@ function App() {
     </React.Fragment>
   );
 }
-// <div className="App">
-//   <Route></Route>
-//   <h1>Henry Pokemon</h1>
-// </div>
 
 export default App;
