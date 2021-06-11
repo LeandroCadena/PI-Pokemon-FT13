@@ -4,8 +4,8 @@ import './Pokemon.css';
 
 export default function Pokemon({ id, name, image, types }) {
     return (
-        <NavLink className="pokemon-container" exact to={`/home/${id}`}>
-            <div>
+        <NavLink className="link" exact to={`/home/${id}`}>
+            <div className="pokemon-container">
                 <img src={image} alt="not found"></img>
                 <div>{name}</div>
                 <span>Tipo: </span>

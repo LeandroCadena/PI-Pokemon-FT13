@@ -1,3 +1,9 @@
 .pokemon-container {
+    display: inline-table;
+    border: 5px solid black;
+}
+
+.link {
     text-decoration: none;
+
 }
