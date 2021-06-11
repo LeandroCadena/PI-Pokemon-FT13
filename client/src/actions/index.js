@@ -12,13 +12,7 @@ export function getPokemons(page) {
                 return Promise.all(json.results.map(async (pokemon) => {
                     const res = await fetch(pokemon.url)
                     const data = await res.json()
-                    return {
-                        index: data.id,
-                        name: data.name,
-                        img: data.sprites.front_default,
-                        stats: data.stats,
-                        types: data.types
-                    }
+                    return data
                 }))
             })
             .then(results => {
@@ -35,15 +29,7 @@ export function searchPokemon(name) {
         return fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
             .then(response => response.json())
             .then(data => {
-                dispatch({
-                    type: SEARCH_POKEMON, payload: [{
-                        index: data.id,
-                        name: data.name,
-                        img: data.sprites.front_default,
-                        stats: data.stats,
-                        types: data.types
-                    }]
-                })
+                dispatch({ type: SEARCH_POKEMON, payload: [data] })
             })
             .catch(error => {
                 dispatch({ type: ERROR, payload: error })

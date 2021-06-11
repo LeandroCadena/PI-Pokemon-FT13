@@ -104,21 +104,26 @@ export function Home({ getPokemons, searchPokemon, pokemonsLoaded, pokemonDetail
                 <button onClick={() => orderByName("descendent")}>ABC ⬆</button>
                 <button onClick={() => orderByName("ascendent")}>ABC ⬇</button>
             </div>
-            {
-                loading ? (<div>Cargando pokemons...</div>) : (
-                    error ? (<div> No Se encuentra el pokemon</div>) : (
-                        filteredPokemons && filteredPokemons.map((pokemon, index) => (
-                            <Pokemon
-                                key={index}
-                                id={pokemon.index}
-                                name={pokemon.name}
-                                image={pokemon.img}
-                                types={pokemon.types}
-                            />
-                        ))
+            <div className="pokedex">
+                {
+                    loading ? (<div>Cargando pokemons...</div>) : (
+                        error ? (<div> No Se encuentra el pokemon</div>) : (
+                            filteredPokemons && filteredPokemons.map((pokemon, index) => (
+                                <Pokemon
+                                    key={index}
+                                    id={pokemon.id}
+                                    name={pokemon.name}
+                                    image={pokemon.sprites.front_default}
+                                    types={pokemon.types}
+                                    stats={pokemon.stats}
+                                    height={pokemon.height}
+                                    weight={pokemon.weight}
+                                />
+                            ))
+                        )
                     )
-                )
-            }
+                }
+            </div>
         </div>
     )
 }
