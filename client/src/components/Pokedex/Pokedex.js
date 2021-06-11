@@ -4,15 +4,50 @@ import Pokemon from '../Pokemon/Pokemon';
 
 export function Pokedex({ pokemonsLoaded }) {
     const [filteredPokemons, setFilteredPokemons] = useState([]);
+    const [sortedPokemons, setSortedPokemons] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        setFilteredPokemons(pokemonsLoaded)
-    }, [pokemonsLoaded])
+        if(loading === true) {
+            setFilteredPokemons(sortedPokemons)
+            setLoading(false)
+        } else {
+            setFilteredPokemons(pokemonsLoaded)
+        }
+    }, [pokemonsLoaded, loading])
+
+    const orderByName = () => {
+        setSortedPokemons(filteredPokemons.sort(function (a, b) {
+            if (a.name > b.name) return 1;
+            if (a.name < b.name) return -1;
+            return 0
+        }))
+        setLoading(true)
+    }
+
+    const orderByForce = () => {
+        setSortedPokemons(filteredPokemons.sort(function (a, b) {
+            if (a.stats[1].base_stat > b.stats[1].base_stat) return 1;
+            if (a.stats[1].base_stat < b.stats[1].base_stat) return -1;
+            return 0
+        }))
+        setLoading(true)
+    }
+
+    // useEffect(() => {
+    //     setFilteredPokemons(sortedPokemons)
+    //     setLoading(false)
+    // }, [loading])
 
     return (
         <div>
             <div className="header">
                 <h1>Pokedex</h1>
+            </div>
+            <div>
+                <h4>Ordenar Por</h4>
+                <button onClick={() => orderByForce()}>Fuerza</button>
+                <button onClick={() => orderByName()}>ABC</button>
             </div>
             <div className="pokedex-grid">
                 {

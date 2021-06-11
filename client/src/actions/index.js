@@ -15,6 +15,7 @@ export function getPokemons(page) {
                         index: data.id,
                         name: data.name,
                         img: data.sprites.front_default,
+                        stats: data.stats,
                         types: data.types
                     }
                 }))
@@ -35,6 +36,7 @@ export function searchPokemon(name) {
                         index: data.id,
                         name: data.name,
                         img: data.sprites.front_default,
+                        stats: data.stats,
                         types: data.types
                     }]
                 })

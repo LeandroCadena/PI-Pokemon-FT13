@@ -8,14 +8,19 @@ export function Pagination({ getPokemons, pokemonDetail, searchPokemon }) {
     const [loading, setLoading] = useState(true);
     const [name, setName] = useState("");
 
+    const reloadPage = async () => {
+        setLoading(true)
+        await getPokemons(page)
+        setLoading(false)
+    }
+
     useEffect(() => {
-        (async () => {
-            setLoading(true)
-            if (page) await getPokemons(page)
-            setLoading(false)
-        })()
+        if (page) reloadPage()
     }, [page])
 
+    useEffect(() => {
+        if (name === "") reloadPage()
+    }, [name])
 
     function handleChange(e) {
         setName(e.target.value);
@@ -40,6 +45,7 @@ export function Pagination({ getPokemons, pokemonDetail, searchPokemon }) {
                         value={name}
                         onChange={e => handleChange(e)}
                     />
+                    <button type="button" onClick={() => reloadPage()}>Recargar</button>
                 </div>
                 <button type="submit">BUSCAR</button>
             </form>
