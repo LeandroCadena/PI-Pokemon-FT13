@@ -1,5 +1,6 @@
 export const GET_POKEMONS = 'GET_POKEMONS';
 export const GET_POKEMON_DETAIL = 'GET_POKEMON_DETAIL';
+export const SEARCH_POKEMON = 'SEARCH_POKEMON';
 
 export function getPokemons(page) {
     return function (dispatch) {
@@ -20,6 +21,32 @@ export function getPokemons(page) {
             })
             .then(results => {
                 dispatch({ type: GET_POKEMONS, payload: results })
+            })
+    }
+}
+
+export function searchPokemon(name) {
+    return function (dispatch) {
+        return fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+            .then(response => response.json())
+            .then(data => {
+                dispatch({
+                    type: SEARCH_POKEMON, payload: [{
+                        index: data.id,
+                        name: data.name,
+                        img: data.sprites.front_default,
+                        types: data.types
+                    }]
+                })
+            })
+            .catch(error => {
+                dispatch({
+                    type: SEARCH_POKEMON, payload: [{
+                        index: 5,
+                        name: " data.name",
+                        img: "data.sprites.front_default"
+                    }]
+                })
             })
     }
 }

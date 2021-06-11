@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { connect } from "react-redux";
 import Pokemon from '../Pokemon/Pokemon';
 
-export function Pokedex(props) {
+export function Pokedex({ pokemonsLoaded }) {
     const [filteredPokemons, setFilteredPokemons] = useState([]);
 
     useEffect(() => {
-        setFilteredPokemons(props.pokemonsLoaded)
-        console.log(props)
-    }, [props])
+        setFilteredPokemons(pokemonsLoaded)
+    }, [pokemonsLoaded])
 
     return (
         <div>
