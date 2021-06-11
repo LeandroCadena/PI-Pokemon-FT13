@@ -33,12 +33,7 @@ export function Pokedex({ pokemonsLoaded }) {
         }))
         setLoading(true)
     }
-
-    // useEffect(() => {
-    //     setFilteredPokemons(sortedPokemons)
-    //     setLoading(false)
-    // }, [loading])
-
+    
     return (
         <div>
             <div className="header">
