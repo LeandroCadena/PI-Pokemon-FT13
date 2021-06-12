@@ -109,7 +109,7 @@ export function Home({ getPokemons, searchPokemon, pokemonsLoaded, pokemonDetail
                     loading ? (<div>Cargando pokemons...</div>) : (
                         error ? (<div> No Se encuentra el pokemon</div>) : (
                             filteredPokemons && filteredPokemons.map((pokemon, index) => (
-                                <Pokemon
+                                <Pokemon className="poke"
                                     key={index}
                                     id={pokemon.id}
                                     name={pokemon.name}

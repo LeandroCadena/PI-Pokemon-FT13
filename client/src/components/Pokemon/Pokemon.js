@@ -3,9 +3,14 @@ import { NavLink } from 'react-router-dom';
 import './Pokemon.css';
 
 export default function Pokemon({ id, name, image, types }) {
+
+    const color = types.map(curr => {
+        return curr.type.name
+    }).join(" ")
+
     return (
         <NavLink className="link" exact to={`/home/${id}`}>
-            <div className="pokemon-container">
+            <div className={`${color} pokemon-container`}>
                 <img src={image} alt="not found"></img>
                 <div>{name}</div>
                 <span>Tipo: </span>
