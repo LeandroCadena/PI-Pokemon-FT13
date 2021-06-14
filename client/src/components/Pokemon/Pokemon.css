@@ -18,12 +18,12 @@
     background-color: blue;
 }
 
-.grass {
-    background-color: green;
-}
 
 .poison {
     background-color: violet;
+}
+.grass {
+    background-color: green;
 }
 
 .bug {

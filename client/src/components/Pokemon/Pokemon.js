@@ -9,7 +9,7 @@ export default function Pokemon({ id, name, image, types }) {
     }).join(" ")
 
     return (
-        <NavLink className="link" exact to={`/home/${id}`}>
+        <NavLink className="link" exact to={`/home/api/${id}`}>
             <div className={`${color} pokemon-container`}>
                 <img src={image} alt="not found"></img>
                 <div>{name}</div>
