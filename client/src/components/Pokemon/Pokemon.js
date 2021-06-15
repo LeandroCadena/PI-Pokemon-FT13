@@ -5,7 +5,7 @@ import './Pokemon.css';
 export default function Pokemon({ id, name, image, types }) {
 
     const color = types.map(curr => {
-        return curr.type.name
+        return curr
     }).join(" ")
 
     return (
@@ -16,7 +16,7 @@ export default function Pokemon({ id, name, image, types }) {
                 <span>Tipo: </span>
                 {
                     types && types.map((type, index) => (
-                        <span key={index}>{type.type.name}</span>
+                        <span key={index}>{type}</span>
                     ))
                 }
             </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Login.css';
+import './LandingPage.css';
 import { NavLink } from 'react-router-dom';
 
 export default function Login() {

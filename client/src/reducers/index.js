@@ -1,30 +1,27 @@
-import { GET_POKEMONS, GET_POKEMON_DETAIL, SEARCH_POKEMON, ERROR } from '../actions'
+import { GET_POKEMONS, CHANGE_PAGE, ERROR } from '../actions'
+import setViews from '../controllers/Views';
 
 const initialState = {
     pokemonsLoaded: [],
+    pokemonsViews: [],
+    actualPage: 0,
     error: false,
     pokemonDetail: {}
 }
 
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
+const reducer = (state = initialState, { payload, type }) => {
+    switch (type) {
         case GET_POKEMONS:
             return {
                 ...state,
-                pokemonsLoaded: action.payload,
+                pokemonsViews: setViews(payload),
+                pokemonsLoaded: payload,
                 error: false
             };
-        case GET_POKEMON_DETAIL:
+        case CHANGE_PAGE:
             return {
                 ...state,
-                pokemonDetail: action.payload,
-                error: false
-            }
-        case SEARCH_POKEMON:
-            return {
-                ...state,
-                pokemonsLoaded: action.payload,
-                error: false
+                actualPage: 3
             }
         case ERROR:
             return {
