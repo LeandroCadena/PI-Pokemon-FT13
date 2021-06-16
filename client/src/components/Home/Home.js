@@ -8,15 +8,15 @@ export function Home({ getPokemons, pokemonsLoaded, pokemonsViews, actualPage })
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getPokemons()
+        (async () => {
+            setLoading(true)
+            await getPokemons()
+            setLoading(false)
+        })()
     }, [getPokemons])
 
     useEffect(() => {
-        (async () => {
-            await setPokemons(pokemonsViews[actualPage])
-            setLoading(false)
-        })()
-        console.log(pokemonsViews[0])
+        setPokemons(pokemonsViews[actualPage])
     }, [actualPage])
 
     return (

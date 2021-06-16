@@ -4,7 +4,7 @@ import setViews from '../controllers/Views';
 const initialState = {
     pokemonsLoaded: [],
     pokemonsViews: [],
-    actualPage: 0,
+    actualPage: false,
     error: false,
     pokemonDetail: {}
 }
@@ -16,12 +16,13 @@ const reducer = (state = initialState, { payload, type }) => {
                 ...state,
                 pokemonsViews: setViews(payload),
                 pokemonsLoaded: payload,
+                actualPage: 0,
                 error: false
             };
         case CHANGE_PAGE:
             return {
                 ...state,
-                actualPage: 3
+                actualPage: payload
             }
         case ERROR:
             return {
