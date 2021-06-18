@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { POKEMON_URL } = require('../utils/constants');
+const { POKEMON_URL, SEARCH_BY_ID, SEARCH_BY_NAME } = require('../utils/constants');
 const { Pokemon, Type } = require('../db');
 
 const getPokemonsApi = async () => {
@@ -46,8 +46,22 @@ const getAllPokemons = async () => {
     return allPokemons;
 };
 
+const getPokemonDetail = async (searchBy, value) => {
+    const pokemons = await getAllPokemons();
+
+    switch (searchBy) {
+        case SEARCH_BY_NAME:
+            return pokemons.filter(pokemon => pokemon.name === value);
+        case SEARCH_BY_ID:
+            return pokemons.filter(pokemon => pokemon.id.toString() === value);
+        default:
+            return pokemons;
+    }
+}
+
 module.exports = {
     getPokemonsApi,
     getPokemonsDatabase,
-    getAllPokemons
+    getAllPokemons,
+    getPokemonDetail
 };

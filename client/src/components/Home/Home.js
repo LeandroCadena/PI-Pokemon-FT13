@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from "react-redux";
 import { getPokemons } from '../../actions';
 import Pokemon from '../Pokemon/Pokemon';
+import { NavLink } from 'react-router-dom'
 
 export function Home({ getPokemons, pokemonsLoaded, pokemonsViews, actualPage }) {
     const [pokemons, setPokemons] = useState([]);
@@ -21,6 +22,9 @@ export function Home({ getPokemons, pokemonsLoaded, pokemonsViews, actualPage })
 
     return (
         <div>
+            <NavLink to='/add'>
+                    Create a new pokemon
+            </NavLink>
             {
                 loading ? (<div>Cargando...</div>) : (
                     pokemons ? pokemons.map(pokemon => (
