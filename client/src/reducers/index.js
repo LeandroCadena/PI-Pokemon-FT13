@@ -1,12 +1,16 @@
-import { GET_POKEMONS, CHANGE_PAGE, GET_POKEMONS_TYPES, ERROR } from '../actions'
+import { GET_POKEMONS, CHANGE_PAGE, SET_POKEMONS_TYPES, CREATE_NEW_POKEMON, ERROR } from '../actions'
 import setViews from '../controllers/Views';
 
 const initialState = {
     pokemonsLoaded: [],
     pokemonsViews: [],
     pokemonsTypes: [],
+    loading: {
+        types: true,
+        pokemons: true,
+        error: false,
+    },
     actualPage: false,
-    error: false,
     pokemonDetail: {}
 }
 
@@ -17,6 +21,10 @@ const reducer = (state = initialState, { payload, type }) => {
                 ...state,
                 pokemonsViews: setViews(payload),
                 pokemonsLoaded: payload,
+                loading: {
+                    ...state.loading,
+                    pokemons: false
+                },
                 actualPage: 0,
                 error: false
             };
@@ -25,15 +33,22 @@ const reducer = (state = initialState, { payload, type }) => {
                 ...state,
                 actualPage: payload
             }
-        case GET_POKEMONS_TYPES:
+        case SET_POKEMONS_TYPES:
             return {
                 ...state,
                 pokemonsTypes: payload,
+                loading: {
+                    ...state.loading,
+                    types: false
+                }
             }
-        case ERROR:
+        case CREATE_NEW_POKEMON:
             return {
                 ...state,
-                error: true
+                loading: {
+                    ...state.loading,
+                    pokemons: true
+                }
             }
         default:
             return state

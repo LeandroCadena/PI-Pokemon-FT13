@@ -2,7 +2,8 @@ import { POKEMON_URL, POKEMON_TYPES, POKEMON_TYPES_API } from '../utils/constant
 import axios from 'axios';
 
 export const GET_POKEMONS = 'GET_POKEMONS';
-export const GET_POKEMONS_TYPES = 'GET_POKEMONS_TYPES';
+export const SET_POKEMONS_TYPES = 'SET_POKEMONS_TYPES';
+export const CREATE_NEW_POKEMON = 'CREATE_NEW_POKEMON';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const ERROR = 'ERROR';
 
@@ -21,24 +22,20 @@ export function changePage(page) {
     }
 }
 
-export const getPokemonTypes = () => async (dispatch) => {
-    try {
-        const res = await axios.get(POKEMON_TYPES);
-        dispatch({ type: GET_POKEMONS_TYPES, payload: res.data });
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export const setPokemonsTypes = async () => {
-    try {
+export function setPokemonsTypes() {
+    return async function (dispatch) {
         const res = await axios.get(POKEMON_TYPES_API);
-        const PokemonsTypes = await Promise.all(res.data.results.map(async (type, index) => {
+        const PokemonsTypes = await Promise.all(res.data.results.map(async (type) => {
             const AddType = await axios.post(POKEMON_TYPES, { name: type.name })
-            return AddType;
+            return AddType.data;
         }))
-        return PokemonsTypes;
-    } catch (error) {
-        console.log(error)
+        dispatch({ type: SET_POKEMONS_TYPES, payload: PokemonsTypes })
+    }
+}
+
+export function createNewPokemon(data) {
+    return async function (dispatch) {
+        const res = await axios.post(POKEMON_URL, data);
+        dispatch({ type: CREATE_NEW_POKEMON, payload: res })
     }
 }

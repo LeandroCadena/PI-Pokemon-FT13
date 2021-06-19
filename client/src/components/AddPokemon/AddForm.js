@@ -4,13 +4,11 @@ export default function AddForm({
     handleSubmit,
     handleChange,
     handleTypes,
-    handleSprite,
     forms,
     pokemonsTypes,
     Types,
     Errors,
     Alert,
-    images,
     image,
 }) {
     return (
@@ -33,16 +31,6 @@ export default function AddForm({
                 <div>
                     <div>
                         <img src={image} alt='image' />
-                    </div>
-                    <div>
-                        <select onChange={(e) => handleSprite(e)}>
-                            {images &&
-                                images.map((el, i) => (
-                                    <option key={i} value={el.sprite}>
-                                        Model {i + 1}
-                                    </option>
-                                ))}
-                        </select>
                     </div>
                 </div>
                 {forms &&

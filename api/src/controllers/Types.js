@@ -7,6 +7,11 @@ const getPokemonTypes = async (types) => {
     return res;
 };
 
+const SearchPokemonType = async (type) => {
+    return await Type.findOne({ where: { name: type } })
+}
+
 module.exports = {
-    getPokemonTypes
+    getPokemonTypes,
+    SearchPokemonType
 };
