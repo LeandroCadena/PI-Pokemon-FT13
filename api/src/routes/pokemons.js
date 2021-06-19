@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const { Pokemon } = require('../db');
 const { SEARCH_BY_ID, SEARCH_BY_NAME } = require('../utils/constants');
-const { getPokemonsApi, getAllPokemons, getPokemonDetail } = require('../controllers/Pokemons');
+const { getAllPokemons, getPokemonDetail } = require('../controllers/Pokemons');
 const router = Router();
 
 router.get('/', async (req, res) => {
@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
 		weight,
 		image,
 	});
-	await newPokemon.setTypes(type);
+	//await newPokemon.setTypes(type);
 	return res.status(200).send(newPokemon);
 });
 

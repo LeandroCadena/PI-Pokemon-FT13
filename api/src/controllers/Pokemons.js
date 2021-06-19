@@ -14,12 +14,13 @@ const getPokemonsApi = async () => {
             id: data.id,
             name: data.name,
             image: data.sprites.front_default,
-            types: data.types.map(type => {
+            Types: data.types.map(type => {
                 return type.type.name;
             }),
-            stats: data.stats.map(stat => {
-                return { name: stat.stat.name, value: stat.base_stat }
-            }),
+            hp: data.stats[0].base_stat,
+            attack: data.stats[1].base_stat,
+            defense: data.stats[2].base_stat,
+            speed: data.stats[5].base_stat,
             height: data.height,
             weight: data.weight
         }

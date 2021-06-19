@@ -72,11 +72,12 @@ export function AddPokemon({ pokemonsTypes, getPokemonTypes }) {
     };
 
     const handleTypes = (e) => {
-        if (Types.length < 2) {
-            if (!Types.includes(e.target.value)) {
-                setTypes([...Types, e.target.value]);
-            }
-        } else setTypes([e.target.value]);
+        const r = 0;
+        Types.length
+            ? Types.includes(e.target.value)
+                ? r = 3
+                : setTypes([...Types, e.target.value])
+            : setTypes([e.target.value]);
     };
 
     return (

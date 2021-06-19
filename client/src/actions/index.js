@@ -1,4 +1,4 @@
-import { POKEMON_URL, POKEMON_TYPES } from '../utils/constants'
+import { POKEMON_URL, POKEMON_TYPES, POKEMON_TYPES_API } from '../utils/constants'
 import axios from 'axios';
 
 export const GET_POKEMONS = 'GET_POKEMONS';
@@ -23,10 +23,22 @@ export function changePage(page) {
 
 export const getPokemonTypes = () => async (dispatch) => {
     try {
-        const res = await axios.get('https://pokeapi.co/api/v2/type');
-        dispatch({ type: GET_POKEMONS_TYPES, payload: res.data.results });
-    } catch (err) {
-        console.log(err);
+        const res = await axios.get(POKEMON_TYPES);
+        dispatch({ type: GET_POKEMONS_TYPES, payload: res.data });
+    } catch (error) {
+        console.log(error);
     }
 };
 
+export const setPokemonsTypes = async () => {
+    try {
+        const res = await axios.get(POKEMON_TYPES_API);
+        const PokemonsTypes = await Promise.all(res.data.results.map(async (type, index) => {
+            const AddType = await axios.post(POKEMON_TYPES, { name: type.name })
+            return AddType;
+        }))
+        return PokemonsTypes;
+    } catch (error) {
+        console.log(error)
+    }
+}

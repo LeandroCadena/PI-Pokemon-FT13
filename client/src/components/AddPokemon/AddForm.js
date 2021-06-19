@@ -14,7 +14,7 @@ export default function AddForm({
     image,
 }) {
     return (
-        <form>
+        <form onSubmit={e => { handleSubmit(e) }}>
             <div>
                 <div>
                     <h1>Create a new Pokemon</h1>
@@ -66,9 +66,9 @@ export default function AddForm({
                 <div>
                     <select onChange={(e) => handleTypes(e)}>
                         {pokemonsTypes &&
-                            pokemonsTypes.map((t, i) => (
-                                <option key={i} value={t.name}>
-                                    {t.name}
+                            pokemonsTypes.map((type, i) => (
+                                <option key={i} value={type.name}>
+                                    {type.name}
                                 </option>
                             ))}
                     </select>

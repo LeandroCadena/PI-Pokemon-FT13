@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { getPokemons } from '../../actions';
 import Pokemon from '../Pokemon/Pokemon';
 import { NavLink } from 'react-router-dom'
+import { setPokemonsTypes } from '../../actions'
 
-export function Home({ getPokemons, pokemonsLoaded, pokemonsViews, actualPage }) {
+export function Home({ getPokemons, pokemonsViews, actualPage }) {
     const [pokemons, setPokemons] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -17,13 +18,17 @@ export function Home({ getPokemons, pokemonsLoaded, pokemonsViews, actualPage })
     }, [getPokemons])
 
     useEffect(() => {
+        setPokemonsTypes();
+    }, [setPokemonsTypes])
+
+    useEffect(() => {
         setPokemons(pokemonsViews[actualPage])
     }, [actualPage])
 
     return (
         <div>
             <NavLink to='/add'>
-                    Create a new pokemon
+                Create a new pokemon
             </NavLink>
             {
                 loading ? (<div>Cargando...</div>) : (
@@ -46,7 +51,6 @@ export function Home({ getPokemons, pokemonsLoaded, pokemonsViews, actualPage })
 
 function mapStatetoProps(state) {
     return {
-        pokemonsLoaded: state.pokemonsLoaded,
         actualPage: state.actualPage,
         pokemonsViews: state.pokemonsViews,
         error: state.error
