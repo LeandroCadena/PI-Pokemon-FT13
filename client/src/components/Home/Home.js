@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { getPokemons } from '../../actions';
 import Pokemon from '../Pokemon/Pokemon';
 import { NavLink } from 'react-router-dom'
-import { setPokemonsTypes } from '../../actions'
 
 export function Home({ getPokemons, pokemonsViews, actualPage }) {
     const [pokemons, setPokemons] = useState([]);
@@ -17,9 +16,6 @@ export function Home({ getPokemons, pokemonsViews, actualPage }) {
         })()
     }, [getPokemons])
 
-    useEffect(() => {
-        setPokemonsTypes();
-    }, [setPokemonsTypes])
 
     useEffect(() => {
         setPokemons(pokemonsViews[actualPage])
@@ -37,10 +33,7 @@ export function Home({ getPokemons, pokemonsViews, actualPage }) {
                             id={pokemon.id}
                             name={pokemon.name}
                             image={pokemon.image}
-                            types={pokemon.types}
-                            stats={pokemon.stats}
-                            height={pokemon.height}
-                            weight={pokemon.weight}
+                            types={pokemon.Types}
                         />
                     )) : (<div>Cargando...</div>)
                 )

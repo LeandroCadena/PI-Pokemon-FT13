@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { Pokemon } = require('../db');
+const { Pokemon, Type } = require('../db');
 const { SEARCH_BY_ID, SEARCH_BY_NAME } = require('../utils/constants');
 const { getAllPokemons, getPokemonDetail } = require('../controllers/Pokemons');
 const router = Router();
@@ -41,10 +41,6 @@ router.post('/', async (req, res) => {
 		image,
 	} = req.body;
 
-	if (!name || !type) {
-		return res.status(400).send('Error: Necessary parameters are required');
-	}
-
 	const newPokemon = await Pokemon.create({
 		name,
 		hp,
@@ -55,8 +51,17 @@ router.post('/', async (req, res) => {
 		weight,
 		image,
 	});
-	//await newPokemon.setTypes(type);
+	const tt2 = await Type.findOne({ where: { name: 'dark' } })
+	const tt = await Type.findOne({ where: { name: 'water' } })
+	console.log(tt2)
+
+	await newPokemon.addTypes([tt2, tt])
+
 	return res.status(200).send(newPokemon);
 });
+
+const getTypesDatabase = async () => {
+	return await Type.findAll();
+};
 
 module.exports = router;

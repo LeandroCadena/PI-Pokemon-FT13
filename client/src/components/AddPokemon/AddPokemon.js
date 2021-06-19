@@ -4,7 +4,7 @@ import { POKEMON_URL, DEFAULT_IMAGE, POKEMON_IMAGES, FORMS } from '../../utils/c
 import AddForm from './AddForm';
 import { Validate } from '../../controllers/Validate';
 import { connect } from 'react-redux';
-import { getPokemonTypes } from '../../actions';
+import { getPokemonTypes, setPokemonsTypes } from '../../actions';
 
 export function AddPokemon({ pokemonsTypes, getPokemonTypes }) {
     const [Data, setData] = useState({
@@ -15,7 +15,7 @@ export function AddPokemon({ pokemonsTypes, getPokemonTypes }) {
         speed: '',
         height: '',
         weight: '',
-        type: 1,
+        type: [],
         image: DEFAULT_IMAGE,
     });
 
@@ -34,8 +34,12 @@ export function AddPokemon({ pokemonsTypes, getPokemonTypes }) {
     }, [Errors]);
 
     useEffect(() => {
+        setPokemonsTypes();
+    }, [setPokemonsTypes])
+
+    useEffect(() => {
         getPokemonTypes();
-    }, [getPokemonTypes]);
+    }, [getPokemonTypes, setPokemonsTypes]);
 
     useEffect(() => {
         if (Types.length) {
@@ -72,10 +76,9 @@ export function AddPokemon({ pokemonsTypes, getPokemonTypes }) {
     };
 
     const handleTypes = (e) => {
-        const r = 0;
         Types.length
             ? Types.includes(e.target.value)
-                ? r = 3
+                ? setTypes([...Types])
                 : setTypes([...Types, e.target.value])
             : setTypes([e.target.value]);
     };
