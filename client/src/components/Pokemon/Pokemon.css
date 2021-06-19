@@ -1,8 +1,15 @@
 .pokemon-container {
-    display: inline-table;
-    border: 1px solid black;
+    border: 2px solid rgb(189, 189, 189);
     width: 200px;
-    
+    display: inline-table;
+}
+
+.pokemon-container:hover {
+    border-color: black;
+}
+
+.inner-container{
+    border:1px solid black;
 }
 
 .pokemon-image{

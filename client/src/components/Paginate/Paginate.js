@@ -42,7 +42,7 @@ export function Paginate({ pokemonsViews, changePage, actualPage }) {
                         onClick={(e) => handleClick(e)}
                     >{index + 1}
                     </button>
-                )) : (<div>Cargando...</div>)
+                )) : (<div className='loading-pagination'>Paging...</div>)
             }
             <button
                 className='Pag pag-right'

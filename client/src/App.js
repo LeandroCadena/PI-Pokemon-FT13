@@ -12,8 +12,8 @@ function App() {
     <React.Fragment>
       <Route exact path="/" component={LandingPage} />
       <Route path="/home" component={Navbar}></Route>
-      <Route path="/home" component={Paginate}></Route>
-      <Route path="/home" component={Home}></Route>
+      <Route exact path="/home" component={Paginate}></Route>
+      <Route exact path="/home" component={Home}></Route>
       <Route path="/add" component={AddPokemon}></Route>
     </React.Fragment>
   );
