@@ -42,15 +42,7 @@ export function AddPokemon({ pokemonsTypes, getPokemonTypes }) {
     }, [getPokemonTypes, setPokemonsTypes]);
 
     useEffect(() => {
-        if (Types.length) {
-            let total = pokemonsTypes.reduce((acc, el) => {
-                if (Types.includes(el.name) === true) {
-                    acc.push(el.id);
-                }
-                return acc;
-            }, []);
-            setData({ ...Data, type: total });
-        }
+        setData({ ...Data, type: Types });
     }, [Types]);
 
     const handleSubmit = async (e) => {

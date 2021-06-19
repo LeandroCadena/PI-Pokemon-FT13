@@ -1,7 +1,8 @@
 const { Router } = require('express');
-const { Pokemon, Type } = require('../db');
+const { Pokemon } = require('../db');
 const { SEARCH_BY_ID, SEARCH_BY_NAME } = require('../utils/constants');
 const { getAllPokemons, getPokemonDetail } = require('../controllers/Pokemons');
+const { getPokemonTypes } = require('../controllers/Types');
 const router = Router();
 
 router.get('/', async (req, res) => {
@@ -51,17 +52,14 @@ router.post('/', async (req, res) => {
 		weight,
 		image,
 	});
-	const tt2 = await Type.findOne({ where: { name: 'dark' } })
-	const tt = await Type.findOne({ where: { name: 'water' } })
-	console.log(tt2)
 
-	await newPokemon.addTypes([tt2, tt])
+	const allTypes = await getPokemonTypes(type);
+
+	newPokemon.setTypes(allTypes);
 
 	return res.status(200).send(newPokemon);
 });
 
-const getTypesDatabase = async () => {
-	return await Type.findAll();
-};
+
 
 module.exports = router;
