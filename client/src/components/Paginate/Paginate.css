@@ -1,0 +1,43 @@
+.Pagination-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+    font-weight: bold;
+}
+
+.Pag {
+    background-color: rgb(243, 119, 108);
+    padding: 10px;
+    border: 1px solid rgb(189, 189, 189);
+}
+
+.Pag:hover {
+    background-color: yellow;
+}
+
+.arrow {
+    width: 20px;
+}
+
+.pag-right {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.pag-left {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.arrow-left {
+    width: 20px;
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+}
+
+.actual {
+    border: 2px solid black;
+    
+}
