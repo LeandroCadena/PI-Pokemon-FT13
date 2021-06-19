@@ -11,12 +11,12 @@ export default function Pokemon({ id, name, image, types }) {
     return (
         <NavLink className="link" exact to={`/home/api/${id}`}>
             <div className={`${color} pokemon-container`}>
-                <img src={image} alt="not found"></img>
+                <img className='pokemon-image' src={image} alt="not found"></img>
                 <div>{name}</div>
-                <span>Tipo: </span>
+                <span>Types: </span>
                 {
                     types && types.map((type, index) => (
-                        <span key={index}>{type.name}</span>
+                        <span className='type' key={index}>{type.name}</span>
                     ))
                 }
             </div>

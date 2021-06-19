@@ -1,79 +1,49 @@
 .pokemon-container {
     display: inline-table;
-    
-    border: 2px solid black;
+    border: 1px solid black;
     width: 200px;
+    
+}
+
+.pokemon-image{
+    width: 100px;
+}
+
+.type {
+    padding: 5px;
 }
 
 .link {
     text-decoration: none;
-
+    font-family: monospace;
+    -webkit-text-stroke: thin;
+    text-transform: uppercase;
+    font-size: small;
 }
-
 .fire{
-    background-color: red;
+    background-color: rgb(245, 171, 171);
 }
-
 .water{
-    background-color: blue;
+    background-color: rgb(169, 169, 247);
 }
-
-
 .poison {
-    background-color: violet;
+    background-color: rgb(251, 176, 233);
+}
+.normal{
+    background-color: rgb(244, 244, 245);
 }
 .grass {
-    background-color: green;
+    background-color: rgb(176, 245, 176);
 }
-
 .bug {
-    background-color: rgb(226, 43, 211);
+    background-color: rgb(226, 175, 255);
 }
-
-.normal {
-    background-color: aliceblue;
-}
-
 .electric {
-    background-color: yellow;
+    background-color: rgb(255, 255, 163);
 }
-
 .ground {
-    background-color: rgb(105, 55, 55);
+    background-color: rgb(228, 194, 175);
 }
-
 .fairy {
     background-color: rgb(243, 197, 241);
-}
-
-.fighting {
-    background-color: rgb(141, 141, 141);
-}
-
-.psychic {
-    background-color: rgb(255, 201, 119);
-}
-
-.rock {
-    background-color: rgb(73, 73, 73);
-}
-
-.dragon {
-    background-color: brown;
-}
-
-.ice {
-    background-color: aquamarine;
-}
-
-.dark {
-    background-color: cornflowerblue;
-}
-
-.ghost {
-    background-color: darkcyan;
-}
-
-.steel {
-    background-color: azure;
 }

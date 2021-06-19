@@ -24,9 +24,9 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
     }, [actualPage])
 
     return (
-        <div>
+        <div className='pokemon-table'>
             {
-                loading.pokemons ? (<div>Cargando...</div>) : (
+                loading.pokemons ? (<div className='loading'>Loading...</div>) : (
                     pokemons ? pokemons.map(pokemon => (
                         <Pokemon
                             id={pokemon.id}
@@ -34,7 +34,7 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
                             image={pokemon.image}
                             types={pokemon.Types}
                         />
-                    )) : (<div>Cargando...</div>)
+                    )) : (<div className='loading'>Loading...</div>)
                 )
             }
         </div>
