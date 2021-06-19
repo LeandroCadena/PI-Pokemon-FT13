@@ -17,10 +17,10 @@ router.post('/', async (req, res) => {
 			const newType = await Type.create({ name });
 			return res.status(200).send(newType);
 		} catch (error) {
-			res.send(error);
+			res.status(400).send(error);
 		}
 	}
-	return res.send('this pokemon already exists')
+	return res.status(200).send(type)
 });
 
 module.exports = router;
