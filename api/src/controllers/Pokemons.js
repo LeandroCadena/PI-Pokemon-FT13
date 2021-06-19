@@ -15,7 +15,7 @@ const getPokemonsApi = async () => {
             name: data.name,
             image: data.sprites.front_default,
             Types: data.types.map(type => {
-                return type.type.name;
+                return { name: type.type.name };
             }),
             hp: data.stats[0].base_stat,
             attack: data.stats[1].base_stat,
@@ -33,11 +33,9 @@ const getPokemonsDatabase = async () => {
         include: {
             model: Type,
             attributes: ['name'],
-            through: {
-                attributes: [],
-            },
+            through: { attributes: [] }
         },
-    });
+    })
 };
 
 const getAllPokemons = async () => {

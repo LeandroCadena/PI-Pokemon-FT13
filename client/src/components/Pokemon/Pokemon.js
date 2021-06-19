@@ -4,7 +4,9 @@ import './Pokemon.css';
 
 export default function Pokemon({ id, name, image, types }) {
 
-    const color = types.join(" ")
+    const color = types.map(type => {
+        return type.name
+    }).join(" ")
 
     return (
         <NavLink className="link" exact to={`/home/api/${id}`}>
@@ -14,7 +16,7 @@ export default function Pokemon({ id, name, image, types }) {
                 <span>Tipo: </span>
                 {
                     types && types.map((type, index) => (
-                        <span key={index}>{type}</span>
+                        <span key={index}>{type.name}</span>
                     ))
                 }
             </div>
