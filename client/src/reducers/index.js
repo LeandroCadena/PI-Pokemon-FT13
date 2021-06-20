@@ -86,13 +86,27 @@ const reducer = (state = initialState, { payload, type }) => {
                 },
             }
         case FILTER_POKEMONS:
-            return {
-                ...state,
-                pokemonsViews: setViews(state.pokemonsLoaded, payload),
-                loading: {
-                    ...state.loading,
-                    pokemons: false
-                },
+            const filteredViews = setViews(state.pokemonsLoaded, payload);
+            if (filteredViews.length > 0) {
+                return {
+                    ...state,
+                    pokemonsViews: filteredViews,
+                    loading: {
+                        ...state.loading,
+                        error: false,
+                        pokemons: false
+                    },
+                }
+            } else {
+                return {
+                    ...state,
+                    pokemonsViews: [],
+                    loading: {
+                        ...state.loading,
+                        pokemons: false,
+                        error: 'no pokemons of that type were found'
+                    }
+                }
             }
         default:
             return state

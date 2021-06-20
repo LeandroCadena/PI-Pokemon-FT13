@@ -44,7 +44,7 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
                 >RELOAD POKEMONS</button>
             </div>
             {
-                < div className={loading.search ? 'Pagination-container hidden' : 'Pagination-container'}>
+                < div className={loading.search || !pokemonsViews.length ? 'Pagination-container hidden' : 'Pagination-container'}>
                     <button
                         className='Pag pag-left'
                         onClick={() => previousPage()}

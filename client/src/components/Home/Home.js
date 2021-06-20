@@ -33,14 +33,16 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
                     )) : (<div className='loading'>Loading...</div>)
                 ) : (
                     loading.pokemons ? (<div className='loading'>Loading...</div>) : (
-                        pokemonsViews ? pokemonsViews[actualPage].map(pokemon => (
-                            <Pokemon
-                                id={pokemon.id}
-                                name={pokemon.name}
-                                image={pokemon.image}
-                                types={pokemon.Types}
-                            />
-                        )) : (<div className='loading'>Loading...</div>)
+                        loading.error ? (<div>{loading.error}</div>) : (
+                            pokemonsViews.length ? pokemonsViews[actualPage].map(pokemon => (
+                                <Pokemon
+                                    id={pokemon.id}
+                                    name={pokemon.name}
+                                    image={pokemon.image}
+                                    types={pokemon.Types}
+                                />
+                            )) : (<div className='loading'>Loading...</div>)
+                        )
                     )
                 )
             }
