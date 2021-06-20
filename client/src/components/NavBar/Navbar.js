@@ -16,6 +16,7 @@ export function Navbar({ searchPokemon, setLoading }) {
         e.preventDefault();
         setLoading();
         searchPokemon(name)
+        setName('')
     }
 
     return (

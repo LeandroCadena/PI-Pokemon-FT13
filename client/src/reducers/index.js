@@ -4,9 +4,11 @@ import setViews from '../controllers/Views';
 const initialState = {
     pokemonsViews: [],
     pokemonsTypes: [],
+    searchView: [],
     loading: {
         types: true,
         pokemons: true,
+        search: false,
         error: false,
     },
     actualPage: false,
@@ -21,7 +23,8 @@ const reducer = (state = initialState, { payload, type }) => {
                 pokemonsViews: setViews(payload),
                 loading: {
                     ...state.loading,
-                    pokemons: false
+                    pokemons: false,
+                    search: false
                 },
                 actualPage: 0,
                 error: false
@@ -51,18 +54,14 @@ const reducer = (state = initialState, { payload, type }) => {
         case SEARCH_POKEMON:
             return {
                 ...state,
-                pokemonsViews: setViews(payload),
-                loading: {
-                    ...state.loading,
-                    pokemons: false
-                },
+                searchView: setViews(payload),
             }
         case SET_LOADING:
             return {
                 ...state,
                 loading: {
                     ...state.loading,
-                    pokemons: true
+                    search: true
                 },
             }
         default:

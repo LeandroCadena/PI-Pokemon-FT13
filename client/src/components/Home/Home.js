@@ -4,7 +4,7 @@ import './Home.css'
 import { getPokemons, setPokemonsTypes } from '../../actions';
 import Pokemon from '../Pokemon/Pokemon';
 
-export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage, loading }) {
+export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage, loading, searchView }) {
 
     useEffect(() => {
         if (loading.pokemons) {
@@ -21,8 +21,8 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
     return (
         <div className='pokemon-table'>
             {
-                loading.pokemons ? (<div className='loading'>Loading...</div>) : (
-                    pokemonsViews ? pokemonsViews[actualPage].map(pokemon => (
+                loading.search ? (
+                    searchView.length ? searchView.map(pokemon => (
                         <Pokemon
                             id={pokemon.id}
                             name={pokemon.name}
@@ -30,6 +30,17 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
                             types={pokemon.Types}
                         />
                     )) : (<div className='loading'>Loading...</div>)
+                ) : (
+                    loading.pokemons ? (<div className='loading'>Loading...</div>) : (
+                        pokemonsViews ? pokemonsViews[actualPage].map(pokemon => (
+                            <Pokemon
+                                id={pokemon.id}
+                                name={pokemon.name}
+                                image={pokemon.image}
+                                types={pokemon.Types}
+                            />
+                        )) : (<div className='loading'>Loading...</div>)
+                    )
                 )
             }
         </div>
@@ -40,6 +51,7 @@ function mapStatetoProps(state) {
     return {
         actualPage: state.actualPage,
         pokemonsViews: state.pokemonsViews,
+        searchView: state.searchView,
         loading: state.loading,
         error: state.error
     }
