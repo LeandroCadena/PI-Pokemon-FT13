@@ -51,6 +51,10 @@
     width: 20px;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 .pag-right {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;

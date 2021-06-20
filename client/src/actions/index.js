@@ -6,6 +6,7 @@ export const SET_POKEMONS_TYPES = 'SET_POKEMONS_TYPES';
 export const CREATE_NEW_POKEMON = 'CREATE_NEW_POKEMON';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const SEARCH_POKEMON = 'SEARCH_POKEMON';
+export const RELOAD_POKEMONS = 'RELOAD_POKEMONS';
 export const SET_LOADING = 'SET_LOADING';
 export const ERROR = 'ERROR';
 
@@ -52,5 +53,11 @@ export function searchPokemon(name) {
 export function setLoading() {
     return async function (dispatch) {
         dispatch({ type: SET_LOADING })
+    }
+}
+
+export function reloadPokemons() {
+    return async function (dispatch) {
+        dispatch({ type: RELOAD_POKEMONS })
     }
 }

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from "react-redux";
 import './Home.css'
-import { getPokemons, setPokemonsTypes } from '../../actions';
+import { getPokemons, reloadPokemons, setPokemonsTypes } from '../../actions';
 import Pokemon from '../Pokemon/Pokemon';
 
-export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage, loading, searchView }) {
+export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage, loading, searchView, reloadPokemons }) {
 
     useEffect(() => {
+        reloadPokemons();
         if (loading.pokemons) {
             getPokemons()
         }
@@ -60,7 +61,8 @@ function mapStatetoProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         getPokemons: () => dispatch(getPokemons()),
-        setPokemonsTypes: () => dispatch(setPokemonsTypes())
+        setPokemonsTypes: () => dispatch(setPokemonsTypes()),
+        reloadPokemons: () => dispatch(reloadPokemons())
     }
 }
 
