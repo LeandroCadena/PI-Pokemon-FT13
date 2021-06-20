@@ -49,39 +49,9 @@
     font-size: x-small;
 }
 
-
-.fire{
-    background-color: rgb(245, 171, 171);
+.Tunset {
+    background-color: rgb(154, 218, 218);
 }
-.water{
-    background-color: rgb(169, 169, 247);
-}
-.poison {
-    background-color: rgb(251, 176, 233);
-}
-.normal{
-    background-color: rgb(244, 244, 245);
-}
-.grass {
-    background-color: rgb(174, 236, 174);
-}
-.bug {
-    background-color: rgb(226, 175, 255);
-}
-.electric {
-    background-color: rgb(255, 255, 163);
-}
-.ground {
-    background-color: rgb(228, 194, 175);
-}
-.fairy {
-    background-color: rgb(243, 197, 241);
-}
-.ice {
-    background-color: rgb(183, 240, 240);
-}
-
-
 .Tfire{
     background-color: rgb(255, 100, 100);
 }

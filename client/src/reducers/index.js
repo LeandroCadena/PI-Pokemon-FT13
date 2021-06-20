@@ -23,7 +23,7 @@ const reducer = (state = initialState, { payload, type }) => {
             return {
                 ...state,
                 pokemonsLoaded: payload,
-                pokemonsViews: setViews(payload, { type: 'ALL', dataType: 'ALL' }),
+                pokemonsViews: setViews(payload),
                 loading: {
                     ...state.loading,
                     pokemons: false,
@@ -75,7 +75,7 @@ const reducer = (state = initialState, { payload, type }) => {
         case RELOAD_POKEMONS:
             return {
                 ...state,
-                pokemonsViews: setViews(state.pokemonsLoaded, { type: 'ALL', dataType: 'ALL' }),
+                pokemonsViews: setViews(state.pokemonsLoaded),
                 searchView: [],
                 loading: {
                     ...state.loading,

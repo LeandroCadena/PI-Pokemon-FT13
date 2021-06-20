@@ -10,7 +10,7 @@ export default function Pokemon({ id, name, image, types }) {
 
     return (
         <NavLink className="link" exact to={`/home/pokemon/${id}`}>
-            <div className={`${color} pokemon-container`}>
+            <div className={`${color} unset pokemon-container`}>
                 <div className='inner-container'>
                     <img className='pokemon-home-image' src={image} alt="not found"></img>
                     <div>{name}</div>

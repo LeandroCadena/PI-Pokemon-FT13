@@ -1,34 +1,38 @@
 .Pagination-container {
     display: flex;
     justify-content: center;
-    margin: 30px;
+    margin-top: 30px;
     font-weight: bold;
 }
 
 .second-bar {
-    position: relative;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.reload {
-    position: absolute;
-    left: 200px;
-    top: 10px;
-}
-
-.reload > button {
+.btn-second {
     font-family: fantasy;
-    font-size: medium;
+    font-size: small;
     border-radius: 1rem;
 }
 
-.reload > button:hover {
+.btn-second:hover {
     background-color: yellow;
 }
 
 .filters {
-    position: absolute;
-    right: 200px;
-    top: 10px;
+    font-family: fantasy;
+    font-size: small;
+    display: flex;
+    align-items: center;
+}
+
+.filters > select {
+    font-size: x-small;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 
 .loading-pagination {

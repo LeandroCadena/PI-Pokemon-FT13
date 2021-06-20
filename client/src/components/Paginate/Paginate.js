@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { changePage, filterPokemons, getPokemons, reloadPokemons } from '../../actions';
-import { ARROW_ICON, FILTER_VALUES } from '../../utils/constants'
+import { ARROW_ICON, FILTER_VALUES, SORT_VALUES, MODE_VALUES } from '../../utils/constants'
 import './Paginate.css';
 
 export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloadPokemons, pokemonsTypes, filterPokemons }) {
     const [maxPage, setMaxPage] = useState(0);
     const [types, setTypes] = useState({
-        type: '',
-        dataType: 'ALL'
+        type: 'ALL',
+        dataType: 'ALL',
+        sort: 'DEFAULT',
+        mode: 'DEFAULT'
     });
 
     const handleClick = (e) => {
@@ -39,12 +41,7 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
     }
 
     return (
-        <div className='second-bar'>
-            <div className='reload'>
-                <button
-                    onClick={() => reloadPokemons()}
-                >RELOAD POKEMONS</button>
-            </div>
+        <div>
             {
                 < div className={loading.search || !pokemonsViews.length ? 'Pagination-container hidden' : 'Pagination-container'}>
                     <button
@@ -69,10 +66,19 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
                     ><img className='arrow' src={ARROW_ICON} /></button>
                 </div>
             }
-            <div className={loading.search || loading.pokemons ? 'filters hidden' : 'filters'}>
-                <div>
-                    <span>SELECT TYPE</span>
+            <div className='second-bar'>
+                <div className='reload'>
+                    <button
+                        className='btn-second'
+                        onClick={() => reloadPokemons()}
+                    >RELOAD POKEMONS</button>
+                </div>
+                <div className={loading.search || loading.pokemons ? 'filters hidden' : 'filters'}>
+                    <span>SELECT</span>
                     <select onChange={(e) => handleTypes(e, 'type')}>
+                        <option value={'ALL'}>
+                            {'ALL'}
+                        </option>
                         {pokemonsTypes && pokemonsTypes.map((type, i) => (
                             <option key={i} value={type.name}>
                                 {type.name}
@@ -87,7 +93,23 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
                             </option>
                         ))}
                     </select>
+                    <span>ORDER BY</span>
+                    <select onChange={(e) => handleTypes(e, 'sort')}>
+                        {SORT_VALUES && SORT_VALUES.map((s, i) => (
+                            <option key={i} value={s}>
+                                {s}
+                            </option>
+                        ))}
+                    </select>
+                    <select onChange={(e) => handleTypes(e, 'mode')}>
+                        {MODE_VALUES && MODE_VALUES.map((m, i) => (
+                            <option key={i} value={m}>
+                                {m}
+                            </option>
+                        ))}
+                    </select>
                     <button
+                        className='btn-second'
                         onClick={() => filterPokemons(types)}
                     >FILTER</button>
                 </div>

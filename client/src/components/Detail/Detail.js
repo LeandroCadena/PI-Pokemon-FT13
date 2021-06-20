@@ -23,8 +23,8 @@ export default function Detail(props) {
             {
                 detail ? (
                     <div className='pokemon-card'>
-                        <div className={`pokemon-book ${detail.Types.map(type => { return type.name }).join(" ")}`}>
-                            <div className={`card-header ${detail.Types.map(type => { return "T" + type.name }).join(" ")}`}>
+                        <div className={`pokemon-book unset ${detail.Types.map(type => { return type.name }).join(" ")}`}>
+                            <div className={`card-header Tunset ${detail.Types.map(type => { return "T" + type.name }).join(" ")}`}>
                                 <h1>{detail.name}</h1>
                                 <img className='pokemon-image' src={detail.image}></img>
                                 <p className='pokemon-id'>{`Pokemon ID: ${detail.id}`}</p>
