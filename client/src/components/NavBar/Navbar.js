@@ -7,7 +7,6 @@ import { searchPokemon, setLoading } from '../../actions';
 
 export function Navbar({ searchPokemon, setLoading }) {
     const [name, setName] = useState('');
-    const [type, setType] = useState();
 
     const handleChange = (e) => {
         setName(e.target.value)
@@ -15,7 +14,7 @@ export function Navbar({ searchPokemon, setLoading }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setLoading('pokemons');
+        setLoading('search');
         searchPokemon(name)
         setName('')
     }

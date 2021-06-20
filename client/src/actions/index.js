@@ -67,8 +67,8 @@ export function reloadPokemons() {
     }
 }
 
-export function filterPokemons(type) {
+export function filterPokemons(data) {
     return async function (dispatch) {
-        dispatch({ type: FILTER_POKEMONS, payload: type })
+        dispatch({ type: FILTER_POKEMONS, payload: data })
     }
 }

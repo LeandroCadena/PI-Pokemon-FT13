@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import { changePage, filterPokemons, getPokemons, reloadPokemons } from '../../actions';
-import { ARROW_ICON } from '../../utils/constants'
-import './Paginate.css'
+import { ARROW_ICON, FILTER_VALUES } from '../../utils/constants'
+import './Paginate.css';
 
 export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloadPokemons, pokemonsTypes, filterPokemons }) {
     const [maxPage, setMaxPage] = useState(0);
-    const [type, setType] = useState();
+    const [types, setTypes] = useState({
+        type: '',
+        dataType: 'ALL'
+    });
 
     const handleClick = (e) => {
         changePage(e.target.value);
@@ -28,8 +31,11 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
         }
     }
 
-    const handleTypes = (e) => {
-        setType(e.target.value)
+    const handleTypes = (e, data) => {
+        setTypes({
+            ...types,
+            [data]: e.target.value
+        })
     }
 
     return (
@@ -63,18 +69,26 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
                     ><img className='arrow' src={ARROW_ICON} /></button>
                 </div>
             }
-            <div className='filters'>
+            <div className={loading.search || loading.pokemons ? 'filters hidden' : 'filters'}>
                 <div>
                     <span>SELECT TYPE</span>
-                    <select onChange={(e) => handleTypes(e)}>
+                    <select onChange={(e) => handleTypes(e, 'type')}>
                         {pokemonsTypes && pokemonsTypes.map((type, i) => (
                             <option key={i} value={type.name}>
                                 {type.name}
                             </option>
                         ))}
                     </select>
+                    <span>FROM</span>
+                    <select onChange={(e) => handleTypes(e, 'dataType')}>
+                        {FILTER_VALUES && FILTER_VALUES.map((type, i) => (
+                            <option key={i} value={type}>
+                                {type}
+                            </option>
+                        ))}
+                    </select>
                     <button
-                        onClick={() => filterPokemons(type)}
+                        onClick={() => filterPokemons(types)}
                     >FILTER</button>
                 </div>
             </div>
