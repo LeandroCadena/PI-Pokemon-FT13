@@ -4,7 +4,7 @@ import { changePage } from '../../actions';
 import { ARROW_ICON } from '../../utils/constants'
 import './Paginate.css'
 
-export function Paginate({ pokemonsViews, changePage, actualPage }) {
+export function Paginate({ pokemonsViews, changePage, actualPage, loading }) {
     const [maxPage, setMaxPage] = useState(0);
 
     const handleClick = (e) => {
@@ -34,15 +34,16 @@ export function Paginate({ pokemonsViews, changePage, actualPage }) {
                 onClick={() => previousPage()}
             ><img className='arrow-left' src={ARROW_ICON} /></button>
             {
-                pokemonsViews.length ? pokemonsViews.map((pokemon, index) => (
-                    <button
-                        key={index}
-                        className={parseInt(actualPage) === index ? 'Pag actual' : 'Pag'}
-                        value={index}
-                        onClick={(e) => handleClick(e)}
-                    >{index + 1}
-                    </button>
-                )) : (<div className='loading-pagination'>Paging...</div>)
+                loading.pokemons ? (<div className='loading-pagination'>Paging...</div>) :
+                    pokemonsViews.map((pokemon, index) => (
+                        <button
+                            key={index}
+                            className={parseInt(actualPage) === index ? 'Pag actual' : 'Pag'}
+                            value={index}
+                            onClick={(e) => handleClick(e)}
+                        >{index + 1}
+                        </button>
+                    ))
             }
             <button
                 className='Pag pag-right'
@@ -57,6 +58,7 @@ function mapStatetoProps(state) {
         pokemonsLoaded: state.pokemonsLoaded,
         actualPage: state.actualPage,
         pokemonsViews: state.pokemonsViews,
+        loading: state.loading,
         error: state.error
     }
 }

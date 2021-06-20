@@ -6,15 +6,17 @@ import Home from './components/Home/Home';
 import Paginate from './components/Paginate/Paginate';
 import AddPokemon from './components/AddPokemon/AddPokemon';
 import Navbar from './components/NavBar/Navbar';
+import Detail from './components/Detail/Detail';
 
 function App() {
   return (
     <React.Fragment>
       <Route exact path="/" component={LandingPage} />
-      <Route path="/home" component={Navbar}></Route>
-      <Route exact path="/home" component={Paginate}></Route>
-      <Route exact path="/home" component={Home}></Route>
-      <Route path="/add" component={AddPokemon}></Route>
+      <Route path="/home" component={Navbar} />
+      <Route exact path="/home" component={Paginate} />
+      <Route exact path="/home" component={Home} />
+      <Route path="/add" component={AddPokemon} />
+      <Route path="/home/pokemon/:id" component={Detail}  />
     </React.Fragment>
   );
 }
