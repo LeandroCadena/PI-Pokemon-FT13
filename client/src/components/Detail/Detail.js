@@ -28,7 +28,7 @@ export default function Detail(props) {
                             <img className='pokemon-image' src={detail.image}></img>
                             <p>{`Pokemon ID: ${detail.id}`}</p>
                         </div>
-                        <div>
+                        <div className='card-content'>
                             <p>{`💪Attack: ${detail.attack}`}</p>
                             <p>{`🛡️Defense: ${detail.defense}`}</p>
                             <p>{`❤️HP: ${detail.hp}`}</p>
