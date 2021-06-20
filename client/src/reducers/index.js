@@ -59,6 +59,7 @@ const reducer = (state = initialState, { payload, type }) => {
         case SET_LOADING:
             return {
                 ...state,
+                searchView: [],
                 loading: {
                     ...state.loading,
                     search: true
