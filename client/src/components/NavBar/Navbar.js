@@ -49,7 +49,7 @@ export function Navbar({ searchPokemon, setLoading }) {
 function mapDispatchToProps(dispatch) {
     return {
         searchPokemon: (name) => dispatch(searchPokemon(name)),
-        setLoading: () => dispatch(setLoading)
+        setLoading: () => dispatch(setLoading())
     }
 }
 
