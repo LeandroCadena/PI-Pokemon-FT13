@@ -54,9 +54,24 @@ const reducer = (state = initialState, { payload, type }) => {
                 }
             }
         case SEARCH_POKEMON:
-            return {
-                ...state,
-                searchView: payload,
+            if (payload) {
+                return {
+                    ...state,
+                    searchView: payload,
+                    loading: {
+                        ...state.loading,
+                        error: false,
+                    },
+                }
+            } else {
+                return {
+                    ...state,
+                    searchView: [],
+                    loading: {
+                        ...state.loading,
+                        error: 'Pokemon not found',
+                    },
+                }
             }
         case SET_LOADING:
             return {
@@ -64,7 +79,8 @@ const reducer = (state = initialState, { payload, type }) => {
                 searchView: [],
                 loading: {
                     ...state.loading,
-                    search: true
+                    search: true,
+                    error: false
                 },
             }
         case RELOAD_POKEMONS:

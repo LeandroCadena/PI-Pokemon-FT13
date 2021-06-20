@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
 	if (name) {
 		const pokemonDetail = await getPokemonDetail(SEARCH_BY_NAME, name);
-		pokemonDetail
+		pokemonDetail.length
 			? res.status(200).send(pokemonDetail)
 			: res.status(404).send('Pokemon not found');
 	} else {

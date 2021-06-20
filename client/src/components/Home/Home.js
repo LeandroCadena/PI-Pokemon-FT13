@@ -23,14 +23,16 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
         <div className='pokemon-table'>
             {
                 loading.search ? (
-                    searchView.length ? searchView.map(pokemon => (
-                        <Pokemon
-                            id={pokemon.id}
-                            name={pokemon.name}
-                            image={pokemon.image}
-                            types={pokemon.Types}
-                        />
-                    )) : (<div className='loading'>Loading...</div>)
+                    loading.error ? (<div>{loading.error}</div>) : (
+                        searchView.length ? searchView.map(pokemon => (
+                            <Pokemon
+                                id={pokemon.id}
+                                name={pokemon.name}
+                                image={pokemon.image}
+                                types={pokemon.Types}
+                            />
+                        )) : (<div className='loading'>Loading...</div>)
+                    )
                 ) : (
                     loading.pokemons ? (<div className='loading'>Loading...</div>) : (
                         loading.error ? (<div>{loading.error}</div>) : (
