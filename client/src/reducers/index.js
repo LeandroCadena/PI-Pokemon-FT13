@@ -1,4 +1,4 @@
-import { GET_POKEMONS, CHANGE_PAGE, SET_POKEMONS_TYPES, CREATE_NEW_POKEMON, SEARCH_POKEMON, SET_LOADING, RELOAD_POKEMONS, SET_NAME, CHANGE_FILTER, FILTER_POKEMONS, ERROR } from '../actions'
+import { GET_POKEMONS, CHANGE_PAGE, SET_POKEMONS_TYPES, CREATE_NEW_POKEMON, SEARCH_POKEMON, SET_LOADING, RELOAD_POKEMONS, FILTER_POKEMONS, ERROR } from '../actions'
 import setViews from '../controllers/Views';
 
 const initialState = {
@@ -54,36 +54,14 @@ const reducer = (state = initialState, { payload, type }) => {
                     pokemons: true
                 }
             }
-        case SET_NAME:
+        case SEARCH_POKEMON:
             return {
                 ...state,
-                searchName: payload
-            }
-        case SEARCH_POKEMON:
-            if (payload) {
-                if (payload[0].name === state.searchName) {
-                    return {
-                        ...state,
-                        searchView: payload,
-                        loading: {
-                            ...state.loading,
-                            error: false,
-                        },
-                    }
-                } else {
-                    return {
-                        ...state,
-                    }
-                }
-            } else {
-                return {
-                    ...state,
-                    searchView: [],
-                    loading: {
-                        ...state.loading,
-                        error: 'Pokemon not found',
-                    },
-                }
+                searchView: payload,
+                loading: {
+                    ...state.loading,
+                    error: false,
+                },
             }
         case SET_LOADING:
             return {
@@ -91,8 +69,7 @@ const reducer = (state = initialState, { payload, type }) => {
                 searchView: [],
                 loading: {
                     ...state.loading,
-                    search: true,
-                    error: false
+                    [payload]: true
                 },
             }
         case RELOAD_POKEMONS:
@@ -104,14 +81,6 @@ const reducer = (state = initialState, { payload, type }) => {
                     ...state.loading,
                     search: false,
                     error: false
-                },
-            }
-        case CHANGE_FILTER:
-            return {
-                ...state,
-                loading: {
-                    ...state.loading,
-                    pokemons: true,
                 },
             }
         case FILTER_POKEMONS:
@@ -135,6 +104,14 @@ const reducer = (state = initialState, { payload, type }) => {
                         pokemons: false,
                         error: 'no pokemons of that type were found'
                     }
+                }
+            }
+        case ERROR:
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    error: payload
                 }
             }
         default:

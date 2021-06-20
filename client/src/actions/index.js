@@ -6,11 +6,9 @@ export const SET_POKEMONS_TYPES = 'SET_POKEMONS_TYPES';
 export const CREATE_NEW_POKEMON = 'CREATE_NEW_POKEMON';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const SEARCH_POKEMON = 'SEARCH_POKEMON';
-export const SET_NAME = 'SET_NAME';
 export const RELOAD_POKEMONS = 'RELOAD_POKEMONS';
 export const SET_LOADING = 'SET_LOADING';
 export const FILTER_POKEMONS = 'FILTER_POKEMONS';
-export const CHANGE_FILTER = 'CHANGE_FILTER';
 export const ERROR = 'ERROR';
 
 export function getPokemons() {
@@ -49,18 +47,17 @@ export function createNewPokemon(data) {
 export function searchPokemon(name) {
     return async function (dispatch) {
         try {
-            dispatch({ type: SET_NAME, payload: name })
             const res = await axios.get(POKEMON_NAME + name);
             dispatch({ type: SEARCH_POKEMON, payload: res.data })
         } catch (error) {
-            dispatch({ type: SEARCH_POKEMON, payload: null })
+            dispatch({ type: ERROR, payload: 'Pokemon not found' })
         }
     }
 }
 
-export function setLoading() {
+export function setLoading(state) {
     return async function (dispatch) {
-        dispatch({ type: SET_LOADING })
+        dispatch({ type: SET_LOADING, payload: state })
     }
 }
 
@@ -72,7 +69,6 @@ export function reloadPokemons() {
 
 export function filterPokemons(type) {
     return async function (dispatch) {
-        dispatch({ type: CHANGE_FILTER })
         dispatch({ type: FILTER_POKEMONS, payload: type })
     }
 }

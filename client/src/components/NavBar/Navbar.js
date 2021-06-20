@@ -15,7 +15,7 @@ export function Navbar({ searchPokemon, setLoading }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setLoading();
+        setLoading('pokemons');
         searchPokemon(name)
         setName('')
     }
@@ -51,7 +51,7 @@ export function Navbar({ searchPokemon, setLoading }) {
 function mapDispatchToProps(dispatch) {
     return {
         searchPokemon: (name) => dispatch(searchPokemon(name)),
-        setLoading: () => dispatch(setLoading())
+        setLoading: (state) => dispatch(setLoading(state))
     }
 }
 

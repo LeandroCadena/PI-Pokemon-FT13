@@ -32,10 +32,6 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
         setType(e.target.value)
     }
 
-    const handleFilter = (e) => {
-        filterPokemons(type)
-    }
-
     return (
         <div className='second-bar'>
             <div className='reload'>
@@ -78,7 +74,7 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
                         ))}
                     </select>
                     <button
-                        onClick={(e) => handleFilter(e)}
+                        onClick={() => filterPokemons(type)}
                     >FILTER</button>
                 </div>
             </div>
