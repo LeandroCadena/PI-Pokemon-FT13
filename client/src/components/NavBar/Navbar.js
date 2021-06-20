@@ -14,8 +14,8 @@ export function Navbar({ searchPokemon }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        searchPokemon('bulbasaur');
-        console.log('hola')
+        searchPokemon(name)
+        console.log(name)
     }
 
     return (

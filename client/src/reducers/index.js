@@ -20,7 +20,6 @@ const reducer = (state = initialState, { payload, type }) => {
             return {
                 ...state,
                 pokemonsViews: setViews(payload),
-                pokemonsLoaded: payload,
                 loading: {
                     ...state.loading,
                     pokemons: false
