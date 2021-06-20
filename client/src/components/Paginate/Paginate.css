@@ -5,6 +5,32 @@
     font-weight: bold;
 }
 
+.second-bar {
+    position: relative;
+}
+
+.reload {
+    position: absolute;
+    left: 200px;
+    top: 10px;
+}
+
+.reload > button {
+    font-family: fantasy;
+    font-size: medium;
+    border-radius: 1rem;
+}
+
+.reload > button:hover {
+    background-color: yellow;
+}
+
+.filters {
+    position: absolute;
+    right: 200px;
+    top: 10px;
+}
+
 .loading-pagination {
     background-color: rgb(243, 119, 108);
     padding: 10px;
