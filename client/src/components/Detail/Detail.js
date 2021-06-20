@@ -23,25 +23,27 @@ export default function Detail(props) {
             {
                 detail ? (
                     <div className='pokemon-card'>
-                        <div className={`card-header ${detail.Types.map(type => { return type.name }).join(" ")}`}>
-                            <h1>{detail.name}</h1>
-                            <img className='pokemon-image' src={detail.image}></img>
-                            <p>{`Pokemon ID: ${detail.id}`}</p>
-                        </div>
-                        <div className='card-content'>
-                            <p>{`💪Attack: ${detail.attack}`}</p>
-                            <p>{`🛡️Defense: ${detail.defense}`}</p>
-                            <p>{`❤️HP: ${detail.hp}`}</p>
-                            <p>{`💨Speed: ${detail.speed}`}</p>
-                            <p>{`📏Height: ${detail.height}`}</p>
-                            <p>{`⚖️Weight: ${detail.weight}`}</p>
-                            <p>{`🔥Types: `}
-                                {
-                                    detail.Types && detail.Types.map((type, index) => (
-                                        <span className='type' key={index}>{type.name}</span>
-                                    ))
-                                }
-                            </p>
+                        <div className={`pokemon-book ${detail.Types.map(type => { return type.name }).join(" ")}`}>
+                            <div className={`card-header ${detail.Types.map(type => { return "T" + type.name }).join(" ")}`}>
+                                <h1>{detail.name}</h1>
+                                <img className='pokemon-image' src={detail.image}></img>
+                                <p className='pokemon-id'>{`Pokemon ID: ${detail.id}`}</p>
+                            </div>
+                            <div className='card-content'>
+                                <p>{`💪 Attack: ${detail.attack}`}</p>
+                                <p>{`🛡️ Defense: ${detail.defense}`}</p>
+                                <p>{`❤️ HP: ${detail.hp}`}</p>
+                                <p>{`💨 Speed: ${detail.speed}`}</p>
+                                <p>{`📏 Height: ${detail.height}`}</p>
+                                <p>{`⚖️ Weight: ${detail.weight}`}</p>
+                                <p>{`🔥 Types: `}
+                                    {
+                                        detail.Types && detail.Types.map((type, index) => (
+                                            <span className='type' key={index}>{type.name}</span>
+                                        ))
+                                    }
+                                </p>
+                            </div>
                         </div>
                     </div>
                 ) : (<div>Loading...</div>)

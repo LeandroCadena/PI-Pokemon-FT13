@@ -8,6 +8,12 @@
     justify-content: center;
 }
 
+.pokemon-book{
+    display: flex;
+    margin: auto;
+    padding: 20px;
+}
+
 .card-header{
     width: 250px;
     border: 3px solid black;
@@ -23,6 +29,9 @@
 
 .pokemon-image {
     width: 130px;
+    padding: 10px;
+    background-color: rgb(232, 234, 236);
+    border-radius: 10rem;
 }
 
 .card-content {
@@ -30,6 +39,14 @@
     background-color: rgb(186, 194, 202);
     padding-left: 20px;
     padding-right: 60px;
+    font-family: monospace;
+    -webkit-text-stroke: thin;
+    text-transform: uppercase;
+    font-size: large;
+}
+
+.pokemon-id {
+    font-size: x-small;
 }
 
 
@@ -46,7 +63,7 @@
     background-color: rgb(244, 244, 245);
 }
 .grass {
-    background-color: rgb(176, 245, 176);
+    background-color: rgb(174, 236, 174);
 }
 .bug {
     background-color: rgb(226, 175, 255);
@@ -59,4 +76,39 @@
 }
 .fairy {
     background-color: rgb(243, 197, 241);
+}
+.ice {
+    background-color: rgb(183, 240, 240);
+}
+
+
+.Tfire{
+    background-color: rgb(255, 100, 100);
+}
+.Twater{
+    background-color: rgb(109, 109, 255);
+}
+.Tpoison {
+    background-color: rgb(224, 69, 173);
+}
+.Tnormal{
+    background-color: rgb(231, 189, 162);
+}
+.Tgrass {
+    background-color: rgb(72, 202, 72);
+}
+.Tbug {
+    background-color: rgb(186, 91, 241);
+}
+.Telectric {
+    background-color: rgb(224, 197, 41);
+}
+.Tground {
+    background-color: rgb(216, 131, 82);
+}
+.Tfairy {
+    background-color: rgb(209, 55, 201);
+}
+.Tice{
+    background-color: aqua;
 }

@@ -4,7 +4,6 @@ body {
 }
 
 .pokemon-table {
-    background-color: antiquewhite;
     width: 816px;
     display: block;
     margin: auto;
@@ -12,6 +11,8 @@ body {
 }
 
 .loading {
+    background-color: antiquewhite;
+    border-radius: 2rem;
     padding-left: 10px;
     width: 100px;
 }
