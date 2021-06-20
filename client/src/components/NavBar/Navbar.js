@@ -7,6 +7,7 @@ import { searchPokemon, setLoading } from '../../actions';
 
 export function Navbar({ searchPokemon, setLoading }) {
     const [name, setName] = useState('');
+    const [type, setType] = useState();
 
     const handleChange = (e) => {
         setName(e.target.value)

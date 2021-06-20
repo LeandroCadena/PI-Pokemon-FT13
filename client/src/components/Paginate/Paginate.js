@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
-import { changePage, getPokemons, reloadPokemons } from '../../actions';
+import { changePage, filterPokemons, getPokemons, reloadPokemons } from '../../actions';
 import { ARROW_ICON } from '../../utils/constants'
 import './Paginate.css'
 
-export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloadPokemons }) {
+export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloadPokemons, pokemonsTypes, filterPokemons }) {
     const [maxPage, setMaxPage] = useState(0);
+    const [type, setType] = useState();
 
     const handleClick = (e) => {
         changePage(e.target.value);
@@ -25,6 +26,14 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
         if (actualPage < maxPage) {
             changePage(parseInt(actualPage) + 1)
         }
+    }
+
+    const handleTypes = (e) => {
+        setType(e.target.value)
+    }
+
+    const handleFilter = (e) => {
+        filterPokemons(type)
     }
 
     return (
@@ -57,9 +66,22 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
                         onClick={() => nextPage()}
                     ><img className='arrow' src={ARROW_ICON} /></button>
                 </div>
-
             }
-            <div className='filters'>RELOAssssssssD</div>
+            <div className='filters'>
+                <div>
+                    <span>SELECT TYPE</span>
+                    <select onChange={(e) => handleTypes(e)}>
+                        {pokemonsTypes && pokemonsTypes.map((type, i) => (
+                            <option key={i} value={type.name}>
+                                {type.name}
+                            </option>
+                        ))}
+                    </select>
+                    <button
+                        onClick={(e) => handleFilter(e)}
+                    >FILTER</button>
+                </div>
+            </div>
         </div >
     )
 }
@@ -68,6 +90,7 @@ function mapStatetoProps(state) {
     return {
         actualPage: state.actualPage,
         pokemonsViews: state.pokemonsViews,
+        pokemonsTypes: state.pokemonsTypes,
         loading: state.loading,
         error: state.error
     }
@@ -77,7 +100,8 @@ function mapDispatchToProps(dispatch) {
     return {
         getPokemons: () => dispatch(getPokemons()),
         changePage: (num) => dispatch(changePage(num)),
-        reloadPokemons: () => dispatch(reloadPokemons())
+        reloadPokemons: () => dispatch(reloadPokemons()),
+        filterPokemons: (type) => dispatch(filterPokemons(type))
     }
 }
 

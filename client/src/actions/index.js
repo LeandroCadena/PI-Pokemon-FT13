@@ -8,6 +8,8 @@ export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const SEARCH_POKEMON = 'SEARCH_POKEMON';
 export const RELOAD_POKEMONS = 'RELOAD_POKEMONS';
 export const SET_LOADING = 'SET_LOADING';
+export const FILTER_POKEMONS = 'FILTER_POKEMONS';
+export const CHANGE_FILTER = 'CHANGE_FILTER';
 export const ERROR = 'ERROR';
 
 export function getPokemons() {
@@ -59,5 +61,12 @@ export function setLoading() {
 export function reloadPokemons() {
     return async function (dispatch) {
         dispatch({ type: RELOAD_POKEMONS })
+    }
+}
+
+export function filterPokemons(type) {
+    return async function (dispatch) {
+        dispatch({ type: CHANGE_FILTER })
+        dispatch({ type: FILTER_POKEMONS, payload: type })
     }
 }
