@@ -55,7 +55,6 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading }) {
 
 function mapStatetoProps(state) {
     return {
-        pokemonsLoaded: state.pokemonsLoaded,
         actualPage: state.actualPage,
         pokemonsViews: state.pokemonsViews,
         loading: state.loading,

@@ -5,6 +5,7 @@ export const GET_POKEMONS = 'GET_POKEMONS';
 export const SET_POKEMONS_TYPES = 'SET_POKEMONS_TYPES';
 export const CREATE_NEW_POKEMON = 'CREATE_NEW_POKEMON';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
+export const SEARCH_POKEMON = 'SEARCH_POKEMON';
 export const ERROR = 'ERROR';
 
 export function getPokemons() {
@@ -37,5 +38,16 @@ export function createNewPokemon(data) {
     return async function (dispatch) {
         const res = await axios.post(POKEMON_URL, data);
         dispatch({ type: CREATE_NEW_POKEMON, payload: res })
+    }
+}
+
+export function searchPokemon(name) {
+    return async function (dispatch) {
+        try {
+            const res = await axios.post(`${POKEMON_URL}/name`, name);
+            dispatch({ type: SEARCH_POKEMON, payload: res.data })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }

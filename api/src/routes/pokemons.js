@@ -6,9 +6,13 @@ const { getPokemonTypes } = require('../controllers/Types');
 const router = Router();
 
 router.get('/', async (req, res) => {
-	const { name } = req.body;
-
 	let pokemons = await getAllPokemons();
+
+	return res.status(200).send(pokemons);
+});
+
+router.post('/name', async (req, res) => {
+	const { name } = req.body;
 
 	if (name) {
 		const pokemonDetail = await getPokemonDetail(SEARCH_BY_NAME, name);
@@ -16,8 +20,7 @@ router.get('/', async (req, res) => {
 			? res.status(200).send(pokemonDetail)
 			: res.status(404).send('Pokemon not found');
 	}
-	return res.status(200).send(pokemons);
-});
+})
 
 router.get('/:id', async (req, res) => {
 	const { id } = req.params;
