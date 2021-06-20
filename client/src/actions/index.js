@@ -6,6 +6,7 @@ export const SET_POKEMONS_TYPES = 'SET_POKEMONS_TYPES';
 export const CREATE_NEW_POKEMON = 'CREATE_NEW_POKEMON';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const SEARCH_POKEMON = 'SEARCH_POKEMON';
+export const SET_NAME = 'SET_NAME';
 export const RELOAD_POKEMONS = 'RELOAD_POKEMONS';
 export const SET_LOADING = 'SET_LOADING';
 export const FILTER_POKEMONS = 'FILTER_POKEMONS';
@@ -48,6 +49,7 @@ export function createNewPokemon(data) {
 export function searchPokemon(name) {
     return async function (dispatch) {
         try {
+            dispatch({ type: SET_NAME, payload: name })
             const res = await axios.get(POKEMON_NAME + name);
             dispatch({ type: SEARCH_POKEMON, payload: res.data })
         } catch (error) {

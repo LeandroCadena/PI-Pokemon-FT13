@@ -1,4 +1,4 @@
-import { GET_POKEMONS, CHANGE_PAGE, SET_POKEMONS_TYPES, CREATE_NEW_POKEMON, SEARCH_POKEMON, SET_LOADING, RELOAD_POKEMONS, CHANGE_FILTER, FILTER_POKEMONS, ERROR } from '../actions'
+import { GET_POKEMONS, CHANGE_PAGE, SET_POKEMONS_TYPES, CREATE_NEW_POKEMON, SEARCH_POKEMON, SET_LOADING, RELOAD_POKEMONS, SET_NAME, CHANGE_FILTER, FILTER_POKEMONS, ERROR } from '../actions'
 import setViews from '../controllers/Views';
 
 const initialState = {
@@ -6,6 +6,7 @@ const initialState = {
     pokemonsTypes: [],
     pokemonsLoaded: [],
     searchView: [],
+    searchName: '',
     loading: {
         types: true,
         pokemons: true,
@@ -53,15 +54,26 @@ const reducer = (state = initialState, { payload, type }) => {
                     pokemons: true
                 }
             }
+        case SET_NAME:
+            return {
+                ...state,
+                searchName: payload
+            }
         case SEARCH_POKEMON:
             if (payload) {
-                return {
-                    ...state,
-                    searchView: payload,
-                    loading: {
-                        ...state.loading,
-                        error: false,
-                    },
+                if (payload[0].name === state.searchName) {
+                    return {
+                        ...state,
+                        searchView: payload,
+                        loading: {
+                            ...state.loading,
+                            error: false,
+                        },
+                    }
+                } else {
+                    return {
+                        ...state,
+                    }
                 }
             } else {
                 return {
@@ -90,7 +102,8 @@ const reducer = (state = initialState, { payload, type }) => {
                 searchView: [],
                 loading: {
                     ...state.loading,
-                    search: false
+                    search: false,
+                    error: false
                 },
             }
         case CHANGE_FILTER:
