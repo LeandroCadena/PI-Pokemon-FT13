@@ -1,8 +1,7 @@
-import { GET_POKEMONS, CHANGE_PAGE, SET_POKEMONS_TYPES, CREATE_NEW_POKEMON, SEARCH_POKEMON, ERROR } from '../actions'
+import { GET_POKEMONS, CHANGE_PAGE, SET_POKEMONS_TYPES, CREATE_NEW_POKEMON, SEARCH_POKEMON, SET_LOADING, ERROR } from '../actions'
 import setViews from '../controllers/Views';
 
 const initialState = {
-    pokemonsLoaded: [],
     pokemonsViews: [],
     pokemonsTypes: [],
     loading: {
@@ -52,7 +51,19 @@ const reducer = (state = initialState, { payload, type }) => {
         case SEARCH_POKEMON:
             return {
                 ...state,
-                pokemonsLoaded: payload
+                pokemonsViews: setViews(payload),
+                loading: {
+                    ...state.loading,
+                    pokemons: false
+                },
+            }
+        case SET_LOADING:
+            return {
+                ...state,
+                loading: {
+                    ...state.loading,
+                    pokemons: true
+                },
             }
         default:
             return state

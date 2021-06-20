@@ -3,9 +3,9 @@ import './NavBar.css'
 import { POKEBALL_IMAGE, SEARCH_ICON } from '../../utils/constants'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { searchPokemon } from '../../actions';
+import { searchPokemon, setLoading } from '../../actions';
 
-export function Navbar({ searchPokemon }) {
+export function Navbar({ searchPokemon, setLoading }) {
     const [name, setName] = useState('');
 
     const handleChange = (e) => {
@@ -14,8 +14,8 @@ export function Navbar({ searchPokemon }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setLoading();
         searchPokemon(name)
-        console.log(name)
     }
 
     return (
@@ -48,7 +48,8 @@ export function Navbar({ searchPokemon }) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        searchPokemon: (name) => dispatch(searchPokemon(name))
+        searchPokemon: (name) => dispatch(searchPokemon(name)),
+        setLoading: () => dispatch(setLoading)
     }
 }
 

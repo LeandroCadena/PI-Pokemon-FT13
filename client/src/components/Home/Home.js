@@ -5,7 +5,6 @@ import { getPokemons, setPokemonsTypes } from '../../actions';
 import Pokemon from '../Pokemon/Pokemon';
 
 export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage, loading }) {
-    const [pokemons, setPokemons] = useState([]);
 
     useEffect(() => {
         if (loading.pokemons) {
@@ -19,15 +18,11 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
         }
     }, [setPokemonsTypes])
 
-    useEffect(() => {
-        setPokemons(pokemonsViews[actualPage])
-    }, [actualPage])
-
     return (
         <div className='pokemon-table'>
             {
                 loading.pokemons ? (<div className='loading'>Loading...</div>) : (
-                    pokemons ? pokemons.map(pokemon => (
+                    pokemonsViews ? pokemonsViews[actualPage].map(pokemon => (
                         <Pokemon
                             id={pokemon.id}
                             name={pokemon.name}

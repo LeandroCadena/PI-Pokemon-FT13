@@ -1,4 +1,4 @@
-import { POKEMON_URL, POKEMON_TYPES, POKEMON_TYPES_API } from '../utils/constants'
+import { POKEMON_URL, POKEMON_TYPES, POKEMON_TYPES_API, POKEMON_NAME } from '../utils/constants'
 import axios from 'axios';
 
 export const GET_POKEMONS = 'GET_POKEMONS';
@@ -6,6 +6,7 @@ export const SET_POKEMONS_TYPES = 'SET_POKEMONS_TYPES';
 export const CREATE_NEW_POKEMON = 'CREATE_NEW_POKEMON';
 export const CHANGE_PAGE = 'CHANGE_PAGE';
 export const SEARCH_POKEMON = 'SEARCH_POKEMON';
+export const SET_LOADING = 'SET_LOADING';
 export const ERROR = 'ERROR';
 
 export function getPokemons() {
@@ -43,7 +44,13 @@ export function createNewPokemon(data) {
 
 export function searchPokemon(name) {
     return async function (dispatch) {
-        const res = await axios.get(`${POKEMON_URL}/name/${name}`);
+        const res = await axios.get(POKEMON_NAME + name);
         dispatch({ type: SEARCH_POKEMON, payload: res.data })
+    }
+}
+
+export function setLoading() {
+    return async function (dispatch) {
+        dispatch({ type: SET_LOADING })
     }
 }
