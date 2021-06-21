@@ -18,5 +18,28 @@ describe('Pokemon model', () => {
         Pokemon.create({ name: 'Pikachu' });
       });
     });
+    describe('attributes', () => {
+      it('should throw an error if attribute is wrong', (done) => {
+        Pokemon.create({ name: 'Pikachu', hp: 'Invalid data type' })
+          .then(() => done(new Error('It requires a valid type')))
+          .catch(() => done());
+      });
+      it('should work when its a valid attribute', (done) => {
+        Pokemon.create({ name: 'Test', hp: 12 })
+          .then(() => {
+            Pokemon.findOne({
+              where: {
+                name: 'Test',
+              },
+            })
+              .then(pokemon => {
+                expect(pokemon.name).to.equal('Test')
+                expect(pokemon.hp).to.equal(12)
+                done()
+              })
+              .catch(() => done(new Error('It requires a valid attribute')))
+          });
+      });
+    });
   });
 });
