@@ -43,6 +43,8 @@ router.post('/', async (req, res) => {
 		image,
 	} = req.body;
 
+	if (!name || !type) res.status(400).send('Name and Types are required')
+
 	const newPokemon = await Pokemon.create({
 		name,
 		hp,
