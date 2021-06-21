@@ -16,7 +16,7 @@ export default function AddForm({
         <form className='form-container' onSubmit={e => { handleSubmit(e) }}>
             <div className='form-header'>
                 <h1>CREATE A NEW POKEMON</h1>
-                <img src={image} alt='image' />
+                <img src={image} alt='loading'/>
                 {Alert.create ? (
                     <h5>
                         The Pokemon was created successfully

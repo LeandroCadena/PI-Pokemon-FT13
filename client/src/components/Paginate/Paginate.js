@@ -47,7 +47,7 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
                     <button
                         className='Pag pag-left'
                         onClick={() => previousPage()}
-                    ><img className='arrow-left' src={ARROW_ICON} /></button>
+                    ><img alt='loading' className='arrow-left' src={ARROW_ICON} /></button>
                     {
                         loading.pokemons ? (<div className='loading-pagination'>Paging...</div>) :
                             pokemonsViews.map((pokemon, index) => (
@@ -63,7 +63,7 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
                     <button
                         className='Pag pag-right'
                         onClick={() => nextPage()}
-                    ><img className='arrow' src={ARROW_ICON} /></button>
+                    ><img alt='loading' className='arrow' src={ARROW_ICON} /></button>
                 </div>
             }
             <div className='second-bar'>

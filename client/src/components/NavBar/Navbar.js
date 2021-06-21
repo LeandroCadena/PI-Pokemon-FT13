@@ -23,11 +23,11 @@ export function Navbar({ searchPokemon, setLoading }) {
         <div className='NavBar'>
             <div className='searchBar'>
                 <NavLink className='addButton' to='/home'>
-                    <img className='logo' src={POKEBALL_IMAGE}></img>
+                    <img alt='loading' className='logo' src={POKEBALL_IMAGE}></img>
                     HOME
                 </NavLink>
                 <NavLink className='addButton' to='/home/add'>
-                    <img className='logo' src={POKEBALL_IMAGE}></img>
+                    <img alt='loading' className='logo' src={POKEBALL_IMAGE}></img>
                     CREATE
                 </NavLink>
             </div>
@@ -40,7 +40,7 @@ export function Navbar({ searchPokemon, setLoading }) {
                     placeholder='Pokemon...'
                 ></input>
                 <button className='btnSubmit' type='submit'>
-                    <img className='searchIcon' src={SEARCH_ICON}></img>
+                    <img alt='loading' className='searchIcon' src={SEARCH_ICON}></img>
                 </button>
             </form>
         </div>

@@ -18,7 +18,6 @@ export function AddPokemon({ pokemonsTypes, createNewPokemon }) {
         type: [],
         image: DEFAULT_IMAGE,
     });
-
     const [Errors, setErrors] = useState({});
     const [Types, setTypes] = useState([]);
     const [Alert, setAlert] = useState({ errors: false, create: false });
@@ -31,7 +30,6 @@ export function AddPokemon({ pokemonsTypes, createNewPokemon }) {
         if (!Object.keys(Errors).length) {
             setAlert({ ...Alert, errors: false });
         }
-        console.log(Errors)
     }, [Errors]);
 
     useEffect(() => {

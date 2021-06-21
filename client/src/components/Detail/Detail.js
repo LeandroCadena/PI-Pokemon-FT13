@@ -4,15 +4,14 @@ import './Detail.css'
 
 export default function Detail(props) {
     const [detail, setDetail] = useState();
+    const id = props.match.params.id;
 
     useEffect(() => {
-        const id = props.match.params.id;
-
         (async () => {
             const detail = await getPokemonDetail(id)
             setDetail(detail.data[0])
         })()
-    }, [])
+    }, [id])
 
     useEffect(() => {
         console.log(detail)
@@ -26,7 +25,7 @@ export default function Detail(props) {
                         <div className={`pokemon-book unset ${detail.Types.map(type => { return type.name }).join(" ")}`}>
                             <div className={`card-header Tunset ${detail.Types.map(type => { return "T" + type.name }).join(" ")}`}>
                                 <h1>{detail.name}</h1>
-                                <img className='pokemon-image' src={detail.image}></img>
+                                <img alt='loading' className='pokemon-image' src={detail.image}></img>
                                 <p className='pokemon-id'>{`Pokemon ID: ${detail.id}`}</p>
                             </div>
                             <div className='card-content'>

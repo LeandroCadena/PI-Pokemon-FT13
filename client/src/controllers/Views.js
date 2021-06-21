@@ -22,7 +22,7 @@ export default function setViews(pokemons, types = defaultTypes) {
             pokemon.Types.forEach(pokeType => {
                 if (pokeType.name === type) check = true;
             })
-            if (check) return pokemon;
+            if (check) return pokemon
         })
     }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from "react-redux";
 import './Home.css'
 import { getPokemons, reloadPokemons, setPokemonsTypes } from '../../actions';
@@ -11,21 +11,22 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
         if (loading.pokemons) {
             getPokemons()
         }
-    }, [getPokemons])
+    }, [getPokemons, loading.pokemons, reloadPokemons])
 
     useEffect(() => {
         if (loading.types) {
             setPokemonsTypes();
         }
-    }, [setPokemonsTypes])
+    }, [setPokemonsTypes, loading.types])
 
     return (
         <div className='pokemon-table'>
             {
                 loading.search ? (
                     loading.error ? (<div>{loading.error}</div>) : (
-                        searchView.length ? searchView.map(pokemon => (
+                        searchView.length ? searchView.map((pokemon, index) => (
                             <Pokemon
+                                key={index}
                                 id={pokemon.id}
                                 name={pokemon.name}
                                 image={pokemon.image}
@@ -36,9 +37,9 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
                 ) : (
                     loading.pokemons ? (<div className='loading'>Loading...</div>) : (
                         loading.error ? (<div>{loading.error}</div>) : (
-                            
-                            pokemonsViews.length ? pokemonsViews[actualPage].map(pokemon => (
+                            pokemonsViews.length ? pokemonsViews[actualPage].map((pokemon, index) => (
                                 <Pokemon
+                                    key={index}
                                     id={pokemon.id}
                                     name={pokemon.name}
                                     image={pokemon.image}
