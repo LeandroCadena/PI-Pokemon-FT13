@@ -94,6 +94,7 @@ const reducer = (state = initialState, { payload, type }) => {
                         error: false,
                         pokemons: false
                     },
+                    actualPage: 0
                 }
             } else {
                 return {
