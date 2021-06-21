@@ -57,11 +57,11 @@ export function AddPokemon({ pokemonsTypes, createNewPokemon }) {
     };
 
     const handleTypes = (e) => {
-        Types.length
-            ? Types.includes(e.target.value)
-                ? setTypes([...Types])
-                : setTypes([...Types, e.target.value])
-            : setTypes([e.target.value]);
+        if(Types.length < 2) {
+            if(!Types.includes(e.target.value)) {
+                setTypes([...Types, e.target.value])
+            }
+        }
     };
 
     return (

@@ -17,10 +17,6 @@
     font-size: larger;
 }
 
-.form-type {
-    font-family: fantasy;
-}
-
 .form-content {
     display: block;
     width: 300px;
@@ -57,12 +53,13 @@
     border-color:red;
 }
 
-.types-form {
-    display: flex;
-    justify-content: space-between;
-}
-
 .error {
     font-size: x-small;
     color: rgb(119, 4, 4);
+}
+
+.types-container {
+    font-family: fantasy;
+    display: flex;
+    justify-content: space-between;
 }

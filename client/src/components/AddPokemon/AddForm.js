@@ -57,7 +57,7 @@ export default function AddForm({
                         ) : null
                     }
                 </div>
-                <div>
+                <div className='types-container'>
                     <select onChange={(e) => handleTypes(e)}>
                         {pokemonsTypes &&
                             pokemonsTypes.map((type, i) => (
@@ -68,10 +68,16 @@ export default function AddForm({
                     </select>
                     {Types &&
                         Types.map((el, i) => (
-                            <span className='form-type' key={i}>
+                            <span key={i}>
                                 <label>{el}</label>
                             </span>
                         ))}
+                    <span>
+                        {
+                            Types.length ? Types.length : '0'
+                        }
+                        /2
+                    </span>
                 </div>
             </div>
         </form>
