@@ -22,6 +22,9 @@ export const Validate = (data) => {
     if (!data.weight || data.weight.search(reg) === -1) {
         errors.weight = 'Weight is required and it must be a number';
     }
+    if (data.type.length <= 0)
+        errors.type = 'A type is required';
+
     return errors;
 };
 

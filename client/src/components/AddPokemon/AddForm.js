@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './AddPokemon.css'
 export default function AddForm({
     handleSubmit,
     handleChange,
@@ -11,38 +11,37 @@ export default function AddForm({
     Alert,
     image,
 }) {
+    const models = ['name', 'hp', 'attack', 'defense', 'speed', 'height', 'weight'];
     return (
-        <form onSubmit={e => { handleSubmit(e) }}>
-            <div>
-                <div>
-                    <h1>Create a new Pokemon</h1>
-                </div>
-                {Alert.errors ? (
-                    <div>
-                        <ul>
-                            {Object.values(Errors).map((el) => (
-                                <li key={el}>
-                                    {el}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+        <form className='form-container' onSubmit={e => { handleSubmit(e) }}>
+            <div className='form-header'>
+                <h1>CREATE A NEW POKEMON</h1>
+                <img src={image} alt='image' />
+                {Alert.create ? (
+                    <h5>
+                        The Pokemon was created successfully
+                    </h5>
                 ) : null}
-                <div>
-                    <div>
-                        <img src={image} alt='image' />
-                    </div>
-                </div>
+                <button className='btn-second btn-form' type='submit'>
+                    CREATE
+                </button>
+            </div>
+            <div className='form-content'>
                 {forms &&
                     forms.map((el, i) => (
-                        <div key={i} className='div_f'>
-                            <div key={i} className='div_label'>
-                                <label key={i} className='label'>
-                                    {el.label}:
+                        <div className='form-input' key={i}>
+                            <div key={i}>
+                                <label className='label' key={i} >
+                                    {el.label}*
+                                    {
+                                        Alert.errors ? (
+                                            <span className='error'>{Errors[models[i]]}</span>
+                                        ) : null
+                                    }
                                 </label>
                             </div>
                             <input
-                                className='input'
+                                className={Alert.errors ? Errors[models[i]] ? 'error-input' : 'input' : 'input'}
                                 key={el.name}
                                 name={el.name}
                                 type='text'
@@ -51,6 +50,13 @@ export default function AddForm({
                             />
                         </div>
                     ))}
+                <div className='types-form'>🔥 Types*
+                    {
+                        Alert.errors ? (
+                            <span className='error'>{Errors['type']}</span>
+                        ) : null
+                    }
+                </div>
                 <div>
                     <select onChange={(e) => handleTypes(e)}>
                         {pokemonsTypes &&
@@ -60,27 +66,13 @@ export default function AddForm({
                                 </option>
                             ))}
                     </select>
-                    <div>
-                        {Types &&
-                            Types.map((el, i) => (
-                                <div key={i}>
-                                    <label>{el}</label>
-                                </div>
-                            ))}
-                    </div>
+                    {Types &&
+                        Types.map((el, i) => (
+                            <span className='form-type' key={i}>
+                                <label>{el}</label>
+                            </span>
+                        ))}
                 </div>
-                <div>
-                    <button className='btn_submit' type='submit'>
-                        Create a Pokemon
-                    </button>
-                </div>
-                {Alert.create ? (
-                    <div>
-                        <h3>
-                            The Pokemon was created successfully
-                        </h3>
-                    </div>
-                ) : null}
             </div>
         </form>
     )

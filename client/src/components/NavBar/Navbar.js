@@ -26,7 +26,7 @@ export function Navbar({ searchPokemon, setLoading }) {
                     <img className='logo' src={POKEBALL_IMAGE}></img>
                     HOME
                 </NavLink>
-                <NavLink className='addButton' to='/add'>
+                <NavLink className='addButton' to='/home/add'>
                     <img className='logo' src={POKEBALL_IMAGE}></img>
                     CREATE
                 </NavLink>

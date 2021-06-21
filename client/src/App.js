@@ -15,8 +15,8 @@ function App() {
       <Route path="/home" component={Navbar} />
       <Route exact path="/home" component={Paginate} />
       <Route exact path="/home" component={Home} />
-      <Route path="/add" component={AddPokemon} />
-      <Route path="/home/pokemon/:id" component={Detail}  />
+      <Route path="/home/add" component={AddPokemon} />
+      <Route path="/home/pokemon/:id" component={Detail} />
     </React.Fragment>
   );
 }

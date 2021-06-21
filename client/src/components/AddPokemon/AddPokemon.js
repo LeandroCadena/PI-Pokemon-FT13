@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { DEFAULT_IMAGE, FORMS } from '../../utils/constants';
 import AddForm from './AddForm';
+import './AddPokemon.css'
 import { Validate } from '../../controllers/Validate';
 import { connect } from 'react-redux';
 import { createNewPokemon } from '../../actions';
@@ -31,6 +31,7 @@ export function AddPokemon({ pokemonsTypes, createNewPokemon }) {
         if (!Object.keys(Errors).length) {
             setAlert({ ...Alert, errors: false });
         }
+        console.log(Errors)
     }, [Errors]);
 
     useEffect(() => {
@@ -64,7 +65,7 @@ export function AddPokemon({ pokemonsTypes, createNewPokemon }) {
     };
 
     return (
-        <div>
+        <div className='form'>
             <AddForm
                 forms={FORMS}
                 handleSubmit={handleSubmit}
