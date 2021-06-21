@@ -1,15 +1,23 @@
 import React from 'react';
 import './LandingPage.css';
 import { NavLink } from 'react-router-dom';
+import { POKEBALL_IMAGE } from '../../utils/constants'
+import Charizard from '../../img/Charizard.png'
 
 export default function Login() {
     return (
         <div className="login-container">
-            <div className="login">
-                <img className="pokeball" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Pokebola-pokeball-png-0.png" alt='loading'></img>
-                <h3>Pokemon App</h3>
-                <NavLink exact to={"/home"} className="link"><span className="button">Ingresar</span></NavLink>
+            <div className='background'>
+                <img className='Charizard invert' src={Charizard} alt='background'></img>
+                <img className='Charizard' src={Charizard} alt='background'></img>
             </div>
-        </div>
+            <div className='login-pokeball'>
+                <img className="pokeball login" src={POKEBALL_IMAGE} alt='loading' />
+            </div>
+            <div className="login">
+                <h3>Pokemon App</h3>
+                <NavLink exact to={"/home"} className="link"><span className="button">ENTER</span></NavLink>
+            </div>
+        </div >
     )
 }

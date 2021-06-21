@@ -22,6 +22,10 @@ export function Navbar({ searchPokemon, setLoading }) {
     return (
         <div className='NavBar'>
             <div className='searchBar'>
+                <NavLink className='addButton' to='/'>
+                    <img alt='loading' className='logo' src={POKEBALL_IMAGE}></img>
+                    EXIT
+                </NavLink>
                 <NavLink className='addButton' to='/home'>
                     <img alt='loading' className='logo' src={POKEBALL_IMAGE}></img>
                     HOME

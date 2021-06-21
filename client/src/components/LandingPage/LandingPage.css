@@ -1,36 +1,53 @@
-body {
-    background-image: url('https://fondosmil.com/fondo/14712.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
 .login-container {
-    display: contents;
-    position: relative;
+    background-color: rgb(253, 242, 191);
+    position: fixed;
+    font-family: fantasy;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.background {
+    display: flex;
+    justify-content: center;
+}
+
+.Charizard {
+    width: 640px;
+}
+
+.invert {
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
 }
 
 .login {
-    background-color: aliceblue;
     width: 250px;
     height: 250px;
     position: absolute;
-    border-radius: 3rem;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: grid;
     justify-content: center;
-    font-family: fantasy;
+}
+
+.login > h3 {
+    margin-top: 2rem;
 }
 
 .pokeball {
-    height: 100px;
+    opacity: 60%;
 }
 
 .link {
     text-decoration: none;
     color: rgb(3, 3, 3);
     text-align: center;
+    margin-top: 4rem;
 }
 
 .button {
