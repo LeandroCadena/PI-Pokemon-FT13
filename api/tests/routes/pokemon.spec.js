@@ -25,7 +25,6 @@ describe('Pokemon routes', () => {
     });
     it('responds with an array', (done) => {
       agent.get('/pokemons')
-        .expect(200)
         .end(function (err, res) {
           expect(res.body).to.be.a('array')
           done()
@@ -33,7 +32,6 @@ describe('Pokemon routes', () => {
     });
     it('If the name query is passed, should responds by that name', (done) => {
       agent.get('/pokemons?name=charmander')
-        .expect(200)
         .end(function (err, res) {
           expect(res.body[0].name).to.be.equal('charmander');
           done()
@@ -41,7 +39,6 @@ describe('Pokemon routes', () => {
     });
     it('If the idquery is passed, should responds by that id', (done) => {
       agent.get('/pokemons/1')
-        .expect(200)
         .end(function (err, res) {
           expect(res.body[0].id).to.be.equal(1);
           done()
@@ -71,7 +68,6 @@ describe('Pokemon routes', () => {
     it('you should create a pokemon correctly', (done) => {
       agent.post('/pokemons')
         .send({ name: 'Test3', type: ['normal'] })
-        .expect(200)
         .end(function (err, res) {
           expect(res.body.name).to.be.equal('Test3');
           done()
