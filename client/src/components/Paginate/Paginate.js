@@ -67,12 +67,14 @@ export function Paginate({ pokemonsViews, changePage, actualPage, loading, reloa
                 </div>
             }
             <div className='second-bar'>
+                {/* RELOAD BUTTON */}
                 <div className='reload'>
                     <button
                         className='btn-second'
                         onClick={() => reloadPokemons()}
                     >RELOAD POKEMONS</button>
                 </div>
+                {/* FILTER */}
                 <div className={loading.search || loading.pokemons ? 'filters hidden' : 'filters'}>
                     <span>SELECT</span>
                     <select onChange={(e) => handleTypes(e, 'type')}>

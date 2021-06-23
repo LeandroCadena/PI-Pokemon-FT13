@@ -13,10 +13,6 @@ export default function Detail(props) {
         })()
     }, [id])
 
-    useEffect(() => {
-        console.log(detail)
-    }, [detail])
-
     return (
         <div className='container'>
             {
