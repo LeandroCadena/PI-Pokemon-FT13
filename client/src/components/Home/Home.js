@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import './Home.css'
 import { getPokemons, reloadPokemons, setPokemonsTypes } from '../../actions';
 import Pokemon from '../Pokemon/Pokemon';
+import Loading from '../Loading/Loading';
+import Error from '../Error/Error';
 
 export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage, loading, searchView, reloadPokemons }) {
 
@@ -23,7 +25,7 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
         <div className='pokemon-table'>
             {
                 loading.search ? (
-                    loading.error ? (<div>{loading.error}</div>) : (
+                    loading.error ? (<Error error={loading.error} />) : (
                         searchView.length ? searchView.map((pokemon, index) => (
                             <Pokemon
                                 key={index}
@@ -32,11 +34,11 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
                                 image={pokemon.image}
                                 types={pokemon.Types}
                             />
-                        )) : (<div className='loading'>Loading...</div>)
+                        )) : (<Loading />)
                     )
                 ) : (
-                    loading.pokemons ? (<div className='loading'>Loading...</div>) : (
-                        loading.error ? (<div>{loading.error}</div>) : (
+                    loading.pokemons ? (<Loading />) : (
+                        loading.error ? (<Error error={loading.error} />) : (
                             pokemonsViews[0].length ? pokemonsViews[actualPage].map((pokemon, index) => (
                                 <Pokemon
                                     key={index}
@@ -45,7 +47,7 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
                                     image={pokemon.image}
                                     types={pokemon.Types}
                                 />
-                            )) : (<div className='loading'>Loading...</div>)
+                            )) : (<Loading />)
                         )
                     )
                 )

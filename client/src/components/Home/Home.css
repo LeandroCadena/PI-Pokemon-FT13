@@ -9,10 +9,3 @@ body {
     margin: auto;
     border-radius: 10px;
 }
-
-.loading {
-    background-color: antiquewhite;
-    border-radius: 2rem;
-    padding-left: 10px;
-    width: 100px;
-}

@@ -1,0 +1,9 @@
+.error-giff {
+    width: 200px;
+}
+
+.error-text{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(107, 2, 2);
+    padding: 10px;
+}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getPokemonDetail } from '../../controllers/Pokemons'
-import './Detail.css'
+import './Detail.css';
+import Loading from '../Loading/Loading';
 
 export default function Detail(props) {
     const [detail, setDetail] = useState();
@@ -41,7 +42,7 @@ export default function Detail(props) {
                             </div>
                         </div>
                     </div>
-                ) : (<div className='loading'>Loading...</div>)
+                ) : (<Loading />)
             }
         </div >
     )

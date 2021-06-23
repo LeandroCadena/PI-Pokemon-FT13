@@ -1,0 +1,17 @@
+.loading-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loading {
+    background-color: antiquewhite;
+    border-radius: 2rem;
+    padding-left: 10px;
+    width: 100px;
+}
+
+.loading-giff {
+    width: 200px;
+}
