@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+const { DEFAULT_IMAGE } = require('../utils/constants')
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -40,6 +41,7 @@ module.exports = (sequelize) => {
 			},
 			image: {
 				type: DataTypes.STRING,
+				defaultValue: DEFAULT_IMAGE
 			},
 		},
 		{ timestamps: false }
