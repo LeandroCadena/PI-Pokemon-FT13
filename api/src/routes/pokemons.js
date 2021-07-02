@@ -25,11 +25,13 @@ router.get('/name/:name', async (req, res) => {
 	const { name } = req.params;
 	if (name) {
 		const Pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-		Pokemon
-			? res.status(200).send(Pokemon.data)
-			: res.status(404).send('Pokemon not found');
+		if (Pokemon && Pokemon !== "Not Found") {
+			res.status(200).send(Pokemon.data)
+		} else {
+			res.status(404).send('Pokemon not found');
+		}
 	}
-}).timeout(3000);
+});
 
 router.get('/:id', async (req, res) => {
 	const { id } = req.params;
