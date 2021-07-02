@@ -48,7 +48,22 @@ export function searchPokemon(name) {
     return async function (dispatch) {
         try {
             const res = await axios.get(`${POKEMON_URL}/name/${name}`);
-            dispatch({ type: SEARCH_POKEMON, payload: res.data })
+            const data = res.data;
+            const pokemon = [{
+                id: data.id,
+                name: data.name,
+                image: data.sprites.front_default,
+                Types: data.types.map(type => {
+                    return { name: type.type.name };
+                }),
+                hp: data.stats[0].base_stat,
+                attack: data.stats[1].base_stat,
+                defense: data.stats[2].base_stat,
+                speed: data.stats[5].base_stat,
+                height: data.height,
+                weight: data.weight
+            }]
+            dispatch({ type: SEARCH_POKEMON, payload: pokemon })
         } catch (error) {
             dispatch({ type: ERROR, payload: 'Pokemon not found' })
         }
