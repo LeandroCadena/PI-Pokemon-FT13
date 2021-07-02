@@ -29,7 +29,7 @@ router.get('/name/:name', async (req, res) => {
 			? res.status(200).send(Pokemon.data)
 			: res.status(404).send('Pokemon not found');
 	}
-});
+}).timeout(3000);
 
 router.get('/:id', async (req, res) => {
 	const { id } = req.params;
