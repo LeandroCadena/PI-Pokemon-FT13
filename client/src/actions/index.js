@@ -47,7 +47,7 @@ export function createNewPokemon(data) {
 export function searchPokemon(name) {
     return async function (dispatch) {
         try {
-            const res = await axios.get(POKEMON_NAME + name);
+            const res = await axios.get(`${POKEMON_URL}/name/${name}`);
             dispatch({ type: SEARCH_POKEMON, payload: res.data })
         } catch (error) {
             dispatch({ type: ERROR, payload: 'Pokemon not found' })

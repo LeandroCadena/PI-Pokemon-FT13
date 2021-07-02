@@ -3,6 +3,7 @@ const { Pokemon } = require('../db');
 const { SEARCH_BY_ID, SEARCH_BY_NAME } = require('../utils/constants');
 const { getAllPokemons, getPokemonDetail } = require('../controllers/Pokemons');
 const { getPokemonTypes } = require('../controllers/Types');
+const axios = require('axios')
 const router = Router();
 
 router.get('/', async (req, res) => {
@@ -17,6 +18,16 @@ router.get('/', async (req, res) => {
 			: res.status(404).send('Pokemon not found');
 	} else {
 		return res.status(200).send(pokemons);
+	}
+});
+
+router.get('/name/:name', async (req, res) => {
+	const { name } = req.params;
+	if (name) {
+		const Pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+		Pokemon
+			? res.status(200).send(Pokemon.data)
+			: res.status(404).send('Pokemon not found');
 	}
 });
 
