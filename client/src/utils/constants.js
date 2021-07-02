@@ -1,7 +1,7 @@
-export const POKEMON_URL = 'http://159.203.183.30:3001/api/pokemons';
-export const POKEMON_TYPES = 'http://159.203.183.30:3001/api/types';
+export const POKEMON_URL = 'http://159.203.183.30/api/pokemons';
+export const POKEMON_TYPES = 'http://159.203.183.30/api/types';
 export const POKEMON_TYPES_API = 'https://pokeapi.co/api/v2/type';
-export const POKEMON_NAME = 'http://159.203.183.30:3001/api/pokemons?name=';
+export const POKEMON_NAME = 'http://159.203.183.30/api/pokemons?name=';
 export const DEFAULT_IMAGE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/150.png';
 export const BACKGROUND_IMAGE = 'https://static.wikia.nocookie.net/ssbb/images/2/21/Charizard_SSBU.png/revision/latest/scale-to-width-down/1000?cb=20180614230743&path-prefix=es';
 
