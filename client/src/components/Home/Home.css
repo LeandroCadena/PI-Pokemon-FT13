@@ -3,9 +3,12 @@ body {
     background-color: rgb(189, 189, 189);
 }
 
+.home {
+    height: 580px;
+}
+
 .pokemon-table {
-    width: 816px;
+    width: 1200px;
     display: block;
     margin: auto;
-    border-radius: 10px;
 }

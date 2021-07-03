@@ -10,7 +10,11 @@ export default function setViews(pokemons, types = defaultTypes) {
     let view = [];
     const regExp = /^[A-F\d]{8}-[A-F\d]{4}-4[A-F\d]{3}-[89AB][A-F\d]{3}-[A-F\d]{12}$/i;
 
-    let array = pokemons;
+    let array = [];
+    for (let i = 0; i < pokemons.length; i++) {
+        array.push(pokemons[i]);
+    }
+    // let array = pokemons;
     const type = types.type;
     const dataType = types.dataType;
     const sort = types.sort;

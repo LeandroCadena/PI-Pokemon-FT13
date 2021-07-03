@@ -5,36 +5,6 @@
     font-weight: bold;
 }
 
-.second-bar {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.btn-second {
-    font-family: fantasy;
-    font-size: small;
-    border-radius: 1rem;
-}
-
-.btn-second:hover {
-    background-color: yellow;
-}
-
-.filters {
-    font-family: fantasy;
-    font-size: small;
-    display: flex;
-    align-items: center;
-}
-
-.filters > select {
-    font-size: x-small;
-    margin-left: 2px;
-    margin-right: 2px;
-}
-
 .loading-pagination {
     background-color: rgb(243, 119, 108);
     padding: 10px;

@@ -22,24 +22,12 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
     }, [setPokemonsTypes, loading.types])
 
     return (
-        <div className='pokemon-table'>
-            {
-                loading.search ? (
-                    loading.error ? (<Error error={loading.error} />) : (
-                        searchView.length ? searchView.map((pokemon, index) => (
-                            <Pokemon
-                                key={index}
-                                id={pokemon.id}
-                                name={pokemon.name}
-                                image={pokemon.image}
-                                types={pokemon.Types}
-                            />
-                        )) : (<Loading />)
-                    )
-                ) : (
-                    loading.pokemons ? (<Loading />) : (
+        <div className='home'>
+            <div className='pokemon-table'>
+                {
+                    loading.search ? (
                         loading.error ? (<Error error={loading.error} />) : (
-                            pokemonsViews[0].length ? pokemonsViews[actualPage].map((pokemon, index) => (
+                            searchView.length ? searchView.map((pokemon, index) => (
                                 <Pokemon
                                     key={index}
                                     id={pokemon.id}
@@ -49,9 +37,23 @@ export function Home({ getPokemons, pokemonsViews, setPokemonsTypes, actualPage,
                                 />
                             )) : (<Loading />)
                         )
+                    ) : (
+                        loading.pokemons ? (<Loading />) : (
+                            loading.error ? (<Error error={loading.error} />) : (
+                                pokemonsViews[0].length ? pokemonsViews[actualPage].map((pokemon, index) => (
+                                    <Pokemon
+                                        key={index}
+                                        id={pokemon.id}
+                                        name={pokemon.name}
+                                        image={pokemon.image}
+                                        types={pokemon.Types}
+                                    />
+                                )) : (<Loading />)
+                            )
+                        )
                     )
-                )
-            }
+                }
+            </div>
         </div>
     )
 }
