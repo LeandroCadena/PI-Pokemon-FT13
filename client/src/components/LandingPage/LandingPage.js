@@ -12,7 +12,7 @@ export default function Login() {
                 <img className='Charizard' src={Charizard} alt='background'></img>
             </div>
             <div className='login-pokeball'>
-                <img className="pokeball login" src={POKEBALL_IMAGE} alt='loading' />
+                <img className="pokeball login" src={POKEBALL_IMAGE}/>
             </div>
             <div className="login">
                 <NavLink exact to={"/home"} className="link"><span className="button">ENTER</span></NavLink>
