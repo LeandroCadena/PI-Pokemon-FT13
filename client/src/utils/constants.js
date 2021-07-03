@@ -24,4 +24,4 @@ export const MODE_VALUES = ['DEFAULT', 'ASCENDENT', 'DESCENDENT'];
 export const POKEBALL_IMAGE = pokeball;
 export const SEARCH_ICON = 'https://cdn0.iconfinder.com/data/icons/very-basic-2-android-l-lollipop-icon-pack/24/search-512.png'
 export const ARROW_ICON = 'https://www.braindw.com/wp-content/uploads/2018/04/arrow-icon-28.png'
-export const POKEMON_LOGO = 'https://images.wikidexcdn.net/mwuploads/esssbwiki/7/77/latest/20111028181540/TituloUniversoPok%C3%A9mon.png'
+export const POKEMON_LOGO = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/2560px-International_Pok%C3%A9mon_logo.svg.png'

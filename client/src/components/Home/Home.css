@@ -1,6 +1,9 @@
 body {
     background-image: none;
     background-color: rgb(189, 189, 189);
+    background-image: url('../../img/Background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .home {

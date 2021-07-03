@@ -1,5 +1,5 @@
 .pokemon-container {
-    border: 2px solid rgb(189, 189, 189);
+    border: 2px solid transparent;
     width: 296px;
     display: inline-table;
     border-radius: 0.65rem;
@@ -38,7 +38,7 @@
     font-size: medium;
 }
 .unset {
-    background-color: rgb(233, 237, 245);
+    background-color: rgb(233, 237, 245,80%);
 }
 .fire{
     background-color: rgb(245, 171, 171);
