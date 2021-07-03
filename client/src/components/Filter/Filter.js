@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { filterPokemons, reloadPokemons } from '../../actions';
-import { FILTER_VALUES, SORT_VALUES, MODE_VALUES } from '../../utils/constants'
+import { FILTER_VALUES, SORT_VALUES, MODE_VALUES, POKEMON_LOGO } from '../../utils/constants'
 import './Filter.css'
 
 export function Filter({ reloadPokemons, filterPokemons, loading, pokemonsTypes }) {
@@ -20,7 +20,8 @@ export function Filter({ reloadPokemons, filterPokemons, loading, pokemonsTypes 
     }
 
     return (
-        <div>
+        <div className='first-bar'>
+            <img className='pokemon-logo' src={POKEMON_LOGO}></img>
             <div className='second-bar'>
                 {/* FILTER */}
                 <div className={loading.search || loading.pokemons ? 'filters hidden' : 'filters'}>
@@ -64,7 +65,7 @@ export function Filter({ reloadPokemons, filterPokemons, loading, pokemonsTypes 
                     >FILTER</button>
                     {/* RELOAD BUTTON */}
                     <button
-                        className='btn-second'
+                        className='btn-second not-hidden'
                         onClick={() => reloadPokemons()}
                     >RELOAD POKEMONS</button>
                 </div>
