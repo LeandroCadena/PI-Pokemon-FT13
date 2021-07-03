@@ -15,38 +15,41 @@
 }
 
 .card-header{
-    width: 250px;
+    width: 400px;
     border: 3px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-family: fantasy;
     text-transform: uppercase;
-    font-size: medium;
+    font-size: x-large;
     align-items: center;
     justify-content: center;
+    text-shadow: 0 0 5px rgb(255, 255, 255);
 }
 
 .pokemon-image {
-    width: 130px;
+    width: 230px;
     padding: 10px;
     background-color: rgb(232, 234, 236);
     border-radius: 10rem;
+    box-shadow: 0 0 10px white;
 }
 
 .card-content {
     border: 1px solid black;
     background-color: rgb(186, 194, 202);
     padding-left: 20px;
-    padding-right: 60px;
+    padding-right: 10px;
+    width: 400px;
     font-family: monospace;
     -webkit-text-stroke: thin;
     text-transform: uppercase;
-    font-size: large;
+    font-size: xx-large;
 }
 
 .pokemon-id {
-    font-size: x-small;
+    font-size: medium;
 }
 
 .Tunset {

@@ -1,5 +1,6 @@
 import React from 'react'
 import './AddPokemon.css'
+import { NavLink } from 'react-router-dom'
 export default function AddForm({
     handleSubmit,
     handleChange,
@@ -16,13 +17,18 @@ export default function AddForm({
         <form className='form-container' onSubmit={e => { handleSubmit(e) }}>
             <div className='form-header'>
                 <h1>CREATE A NEW POKEMON</h1>
-                <img src={image} alt='loading'/>
+                <img src={image} alt='loading' />
                 {Alert.create ? (
-                    <h5>
-                        The Pokemon was created successfully
-                    </h5>
+                    <div class="modal">
+                        <div className='modal-content'>
+                            The Pokemon was created successfully
+                        </div>
+                        <NavLink to='/home'>
+                            <button className='OK'>OK</button>
+                        </NavLink>
+                    </div>
                 ) : null}
-                <button className='btn-second btn-form' type='submit'>
+                <button className={Alert.create ?'btn-form hidden': 'btn-form'} type='submit'>
                     CREATE
                 </button>
             </div>
@@ -41,7 +47,7 @@ export default function AddForm({
                                 </label>
                             </div>
                             <input
-                                className={Alert.errors ? Errors[models[i]] ? 'error-input' : 'input' : 'input'}
+                                className={Alert.errors ? Errors[models[i]] ? 'error-input input' : 'input' : 'input'}
                                 key={el.name}
                                 name={el.name}
                                 type='text'
